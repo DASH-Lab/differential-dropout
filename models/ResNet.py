@@ -22,7 +22,7 @@ class BasicBlock(nn.Module):
                 nn.BatchNorm2d(out_channels * BasicBlock.expansion),
             )
         
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         temp = x
         x = self.layer(x) + self.shortcut(temp)
         x = self.relu(x)
@@ -52,7 +52,7 @@ class BottleNeck(nn.Module):
                 nn.BatchNorm2d(out_channels * self.expansion),
             )
     
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         temp = x
         x = self.layer(x) + self.shortcut(temp)
         x = self.relu(x)
@@ -100,7 +100,7 @@ class ResNet(nn.Module):
                 nn.init.normal_(m.weight, 0, 1)
                 nn.init.constant_(m.bias, 0)
     
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
         x = self.conv3(x)

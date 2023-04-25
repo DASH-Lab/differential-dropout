@@ -7,7 +7,7 @@ class Swish(nn.Module):
         super(Swish, self).__init__()
         self.sigmoid = nn.Sigmoid()
     
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         return x * self.sigmoid(x)
     
 class SE(nn.Module):
@@ -22,7 +22,7 @@ class SE(nn.Module):
             nn.Sigmoid(),
         )
         
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         x = self.squeeze(x)
         x = x.view(x.size(0), -1)
         x = self.excitation(x)
@@ -52,7 +52,7 @@ class MBConv(nn.Module):
         
         self.shortcut = (stride == 1) and (in_channels == out_channels)
         
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         temp = x
         residue = self.residual(x)
         x = residue * self.se(residue)
@@ -83,7 +83,7 @@ class SepConv(nn.Module):
         
         self.shortcut = (stride == 1) and (in_channels == out_channels)
         
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         temp = x
         residue = self.residual(x)
         x = residue * self.se(residue)
@@ -158,7 +158,7 @@ class EfficientNet(nn.Module):
             
         return nn.Sequential(*layers)
     
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         x = self.upsample(x)
         for i in range(10):
             x = self.stages[i](x)

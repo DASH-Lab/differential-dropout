@@ -17,7 +17,7 @@ class BottleNeck(nn.Module):
         
         self.shortcut = nn.Sequential()
         
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         x = torch.cat([self.shortcut(x), self.layer(x)], 1)
         return x
     
@@ -31,7 +31,7 @@ class Transition(nn.Module):
             nn.AvgPool2d(2, stride=2),
         )
         
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         return self.layer(x)
         
 class DenseNet(nn.Module):
@@ -77,7 +77,7 @@ class DenseNet(nn.Module):
             in_channels += self.growth_rate
         return nn.Sequential(*layers)
     
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         x = self.conv1(x)
         x = self.dense_module1(x)
         x = self.trans_module1(x)
