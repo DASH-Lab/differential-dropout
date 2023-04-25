@@ -1,3 +1,8 @@
+'''
+Reference to ResNet Implementation:
+    - https://github.com/kuangliu/pytorch-cifar/blob/master/models/resnet.py
+    - https://deep-learning-study.tistory.com/534
+'''
 import torch
 import torch.nn as nn
 
@@ -97,7 +102,7 @@ class ResNet(nn.Module):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, 0, 1)
+                nn.init.normal_(m.weight, 0, 0.01)
                 nn.init.constant_(m.bias, 0)
     
     def forward(self, x):
@@ -113,14 +118,14 @@ class ResNet(nn.Module):
         
         return x
 
-class Model():
-    def resnet18(self, num_classes=1000):
-        return ResNet(BasicBlock, [2, 2, 2, 2], num_classes=num_classes)
-    def resnet34(self, num_classes=1000):
-        return ResNet(BasicBlock, [3, 4, 6, 3], num_classes=num_classes)
-    def resnet50(self, num_classes=1000):
-        return ResNet(BottleNeck, [3, 4, 6, 3], num_classes=num_classes)
-    def resnet101(self, num_classes=1000):
-        return ResNet(BottleNeck, [3, 4, 23, 3], num_classes=num_classes)
-    def resnet152(self, num_classes=1000):
-        return ResNet(BottleNeck, [3, 8, 36, 3], num_classes=num_classes)
+
+def resnet18(num_classes=1000):
+    return ResNet(BasicBlock, [2, 2, 2, 2], num_classes=num_classes)
+def resnet34(num_classes=1000):
+    return ResNet(BasicBlock, [3, 4, 6, 3], num_classes=num_classes)
+def resnet50(num_classes=1000):
+    return ResNet(BottleNeck, [3, 4, 6, 3], num_classes=num_classes)
+def resnet101(num_classes=1000):
+    return ResNet(BottleNeck, [3, 4, 23, 3], num_classes=num_classes)
+def resnet152(num_classes=1000):
+    return ResNet(BottleNeck, [3, 8, 36, 3], num_classes=num_classes)

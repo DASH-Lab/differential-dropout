@@ -1,3 +1,8 @@
+'''
+Reference to DenseNet Implementation: 
+    - https://github.com/kuangliu/pytorch-cifar/blob/master/models/densenet.py
+    - https://deep-learning-study.tistory.com/545
+'''
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -100,17 +105,17 @@ class DenseNet(nn.Module):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, 0, 1)
+                nn.init.normal_(m.weight, 0, 0.01)
                 nn.init.constant_(m.bias, 0)
 
-class Model:
-    def DenseNet121(self, num_classes=1000):
-        return DenseNet(BottleNeck, [6, 12, 24, 16], growth_rate=32, num_classes=num_classes)
-    def DenseNet161(self, num_classes=1000):
-        return DenseNet(BottleNeck, [6, 12, 36, 24], growth_rate=32, num_classes=num_classes)
-    def DenseNet169(self, num_classes=1000):
-        return DenseNet(BottleNeck, [6, 12, 32, 32], growth_rate=32, num_classes=num_classes)
-    def DenseNet201(self, num_classes=1000):
-        return DenseNet(BottleNeck, [6, 12, 48, 32], growth_rate=32, num_classes=num_classes)
+
+def DenseNet121(num_classes=1000):
+    return DenseNet(BottleNeck, [6, 12, 24, 16], growth_rate=32, num_classes=num_classes)
+def DenseNet161(num_classes=1000):
+    return DenseNet(BottleNeck, [6, 12, 36, 24], growth_rate=32, num_classes=num_classes)
+def DenseNet169(num_classes=1000):
+    return DenseNet(BottleNeck, [6, 12, 32, 32], growth_rate=32, num_classes=num_classes)
+def DenseNet201(num_classes=1000):
+    return DenseNet(BottleNeck, [6, 12, 48, 32], growth_rate=32, num_classes=num_classes)
     
     

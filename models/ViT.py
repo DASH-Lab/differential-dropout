@@ -1,3 +1,9 @@
+'''
+Reference to ViT Implementation: 
+    - https://towardsdatascience.com/implementing-visualttransformer-in-pytorch-184f9f16f632
+    - https://deep-learning-study.tistory.com/807
+'''
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
