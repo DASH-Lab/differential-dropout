@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
+import solver.solver_v1 as solver
 
 class BottleNeck(nn.Module):
     def __init__(self, in_channels, growth_rate):
@@ -40,10 +41,10 @@ class Transition(nn.Module):
         return self.layer(x)
         
 class DenseNet(nn.Module):
-    def __init__(self, block, num_blocks, growth_rate=12, reduction=0.5, num_classes=10, init_weights=True):
+    def __init__(self, block, num_blocks, growth_rate=12, reduction=0.5, num_classes=10, init_weights=True, diff_drop=True):
         super(DenseNet, self).__init__()
         self.growth_rate = growth_rate
-        
+        self.diff_drop = diff_drop
         num_channels = 2 * growth_rate
         
         self.conv1 = nn.Conv2d(3, num_channels, kernel_size=3, padding=1, bias=False)
@@ -70,6 +71,8 @@ class DenseNet(nn.Module):
         num_channels += num_blocks[3] * growth_rate
         
         self.batch_norm = nn.BatchNorm2d(num_channels)
+        if self.diff_drop:
+            self.differential_dropout = solver.DifferentialDropout()
         self.linear = nn.Linear(num_channels, num_classes)
         
         if init_weights:
@@ -91,7 +94,11 @@ class DenseNet(nn.Module):
         x = self.dense_module3(x)
         x = self.trans_module3(x)
         x = self.dense_module4(x)
-        x = F.avg_pool2d(F.relu(self.batch_norm(x)), 4)
+        if self.diff_drop:
+            x = self.differential_dropout(x=F.relu(self.batch_norm(x)), module=self.linear)
+            x = F.avg_pool2d(x, 4)
+        else:
+            x = F.avg_pool2d(F.relu(self.batch_norm(x)), 4)
         x = x.view(x.size(0), -1)
         x = self.linear(x)
         
@@ -109,13 +116,13 @@ class DenseNet(nn.Module):
                 nn.init.constant_(m.bias, 0)
 
 
-def DenseNet121(num_classes=1000):
-    return DenseNet(BottleNeck, [6, 12, 24, 16], growth_rate=32, num_classes=num_classes)
-def DenseNet161(num_classes=1000):
-    return DenseNet(BottleNeck, [6, 12, 36, 24], growth_rate=32, num_classes=num_classes)
-def DenseNet169(num_classes=1000):
-    return DenseNet(BottleNeck, [6, 12, 32, 32], growth_rate=32, num_classes=num_classes)
-def DenseNet201(num_classes=1000):
-    return DenseNet(BottleNeck, [6, 12, 48, 32], growth_rate=32, num_classes=num_classes)
+def DenseNet121(num_classes=1000, diff_drop=True):
+    return DenseNet(BottleNeck, [6, 12, 24, 16], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
+def DenseNet161(num_classes=1000, diff_drop=True):
+    return DenseNet(BottleNeck, [6, 12, 36, 24], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
+def DenseNet169(num_classes=1000, diff_drop=True):
+    return DenseNet(BottleNeck, [6, 12, 32, 32], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
+def DenseNet201(num_classes=1000, diff_drop=True):
+    return DenseNet(BottleNeck, [6, 12, 48, 32], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
     
     

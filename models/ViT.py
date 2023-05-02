@@ -9,6 +9,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from einops import rearrange, reduce, repeat
 from einops.layers.torch import Rearrange, Reduce
+import solver.solver_v1 as solver
 
 class PatchEmbedding(nn.Module):
     def __init__(self, in_channels: int = 3, patch_size: int = 16, embedding_size: int = 768, img_size = 224) -> None:
@@ -95,18 +96,32 @@ class TransformerEncoder(nn.Sequential):
     def __init__(self, depth=12, ** kwargs):
         super(TransformerEncoder, self).__init__(*[TransformerEncoderBlock(**kwargs) for _ in range(depth)])
 
-class ClassificationHead(nn.Sequential):
-    def __init__(self, embedding_size=768, num_classes=100):
-        super().__init__(
+class ClassificationHead(nn.Module):
+    def __init__(self, embedding_size=768, num_classes=100, diff_drop=True):
+        super(ClassificationHead, self).__init__()
+        
+        self.diff_drop = diff_drop
+        
+        self.reduce_norm = nn.Sequential(
             Reduce('b n e -> b e', reduction='mean'),
             nn.LayerNorm(embedding_size),
-            nn.Linear(embedding_size, num_classes),
         )
+        if self.diff_drop:
+            self.differential_dropout = solver.DifferentialDropout()
+        self.fc = nn.Linear(embedding_size, num_classes)
+    
+    def forward(self, x):
+        x = self.reduce_norm(x)
+        if self.diff_drop:
+            x = self.differential_dropout(x=x, module=self.fc)
+        x = self.fc(x)
+        
+        return x
 
 class ViT(nn.Sequential):
-    def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, **kwargs):
+    def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, diff_drop=True,**kwargs):
         super(ViT, self).__init__(
             PatchEmbedding(in_channels=in_channels, patch_size=patch_size, embedding_size=embedding_size, img_size=img_size),
             TransformerEncoder(depth=depth, embedding_size=embedding_size, **kwargs),
-            ClassificationHead(embedding_size=embedding_size, num_classes=num_classes),
+            ClassificationHead(embedding_size=embedding_size, num_classes=num_classes, diff_drop=diff_drop),
         )

@@ -1,7 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import torch.nn.utils.prune as prune
 import numpy as np
 
 class DifferentialDropout(nn.Module):
@@ -27,6 +25,8 @@ class DifferentialDropout(nn.Module):
                 probs, _ = torch.histogram(temp[i], bins=bins, range=(minimum, maximum), density=True)
                 local_entropy[i] = torch.sum(probs * (0. - torch.log2(probs)))
                 factor2 = local_entropy[i] / batch_entropy
+                
+                ## v1
                 if factor2 == 0:
                     factor1 = 0.0
                     factor2 = 1.0
@@ -34,6 +34,13 @@ class DifferentialDropout(nn.Module):
                     factor2 = 1.0 / factor2
                 
                 p = 1.0 - factor1 / factor2
+                
+                # 이 버전은 correlation이 높은 데이터를 더 많이 삭제하는 거
+                # 사실 프라이버시 측면에서는 위 버전이 맞지만, data bias를 생각하면
+                # if factor2 > 1.0:
+                #     factor2 = 1.0 / factor2
+                # p = factor1 * (1.0 - factor2) ##(이 경우에는 factor2를 1.0보다 작게 해야 함)
+                
                 mask = (torch.rand(x[i].shape) > p).float()
                 x[i] = mask * x[i] / (1.0 - p)
                 

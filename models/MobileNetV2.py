@@ -6,6 +6,7 @@ Reference to MobileNetV2 implementation:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import solver.solver_v1 as solver
 
 def _make_divisible(v, divisor, min_value=None):
     if min_value is None:
@@ -50,7 +51,7 @@ class Block(nn.Module):
         return self.layers(x)
     
 class MobileNetV2(nn.Module):
-    def __init__(self, num_classes=100, input_size=224, width_multiplier=1.0, init_weight=True):
+    def __init__(self, num_classes=100, input_size=224, width_multiplier=1.0, init_weight=True, diff_drop=True):
         super(MobileNetV2, self).__init__()
         
         self.cfg = [
@@ -62,6 +63,7 @@ class MobileNetV2(nn.Module):
             [6, 160, 3, 2],
             [6, 320, 1, 1],
         ]
+        self.diff_drop = diff_drop
         
         input_channels = _make_divisible(32 * width_multiplier, 4 if width_multiplier == 0.1 else 8)
         self.conv_first = nn.Sequential(
@@ -85,6 +87,8 @@ class MobileNetV2(nn.Module):
             nn.ReLU6(inplace=True),
         )
         
+        if self.diff_drop:
+            self.differential_dropout = solver.DifferentialDropout()
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(output_channels, num_classes)
         
@@ -95,6 +99,8 @@ class MobileNetV2(nn.Module):
         x = self.conv_first(x)
         x = self.features(x)
         x = self.conv_last(x)
+        if self.diff_drop:
+            x = self.differential_dropout(x=x, module=self.fc)
         x = self.avgpool(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)

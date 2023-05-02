@@ -6,6 +6,7 @@ Reference to EfficientNet Implementation:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import solver.solver_v1 as solver
 
 class Swish(nn.Module):
     def __init__(self) -> None:
@@ -100,7 +101,7 @@ class SepConv(nn.Module):
         return x
         
 class EfficientNet(nn.Module):
-    def __init__(self, num_classes=100, width=1.0, depth=1.0, scale=1.0, dropout=0.2, se_scale=4, init_weight=True) -> None:
+    def __init__(self, num_classes=100, width=1.0, depth=1.0, scale=1.0, dropout=0.2, se_scale=4, init_weight=True, diff_drop=True) -> None:
         super(EfficientNet, self).__init__()
         channels = [32, 16, 24, 40, 80, 112, 192, 320, 1280]
         repeats = [1, 2, 2, 3, 3, 4, 1]
@@ -113,7 +114,7 @@ class EfficientNet(nn.Module):
         repeats = [int(x * depth) for x in repeats]
             
         self.upsample = nn.Upsample(scale_factor=scale, mode='bilinear', align_corners=False)
-        
+        self.diff_drop = diff_drop
         self.stages = []
         
         stage = nn.Sequential(
@@ -138,7 +139,10 @@ class EfficientNet(nn.Module):
         self.stages = nn.Sequential(*self.stages)
         
         self.squeeze = nn.AdaptiveAvgPool2d((1,1))
-        self.dropout = nn.Dropout(p=dropout)
+        if self.diff_drop:
+            self.differential_dropout = solver.DifferentialDropout()
+        else:
+            self.dropout = nn.Dropout(p=dropout)
         self.linear = nn.Linear(channels[8], num_classes)
         
         if init_weight:
@@ -167,25 +171,30 @@ class EfficientNet(nn.Module):
     def forward(self, x):
         x = self.upsample(x)
         x = self.stages(x)
+        
+        if self.diff_drop:
+            x = self.differential_dropout(x=x, module=self.linear)
+        else:
+            x = self.dropout(x)
+        
         x = self.squeeze(x)
         x = x.view(x.size(0), -1)
-        x = self.dropout(x)
         x = self.linear(x)
         return x
     
-def efficientnet_b0(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=1.0, depth=1.0, scale=224/224, dropout=0.2, se_scale=4)
-def efficientnet_b1(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=1.0, depth=1.1, scale=240/224, dropout=0.2, se_scale=4)
-def efficientnet_b2(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=1.1, depth=1.2, scale=260/224, dropout=0.3, se_scale=4)
-def efficientnet_b3(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=1.2, depth=1.4, scale=230/224, dropout=0.3, se_scale=4)
-def efficientnet_b4(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=1.4, depth=1.8, scale=380/224, dropout=0.4, se_scale=4)
-def efficientnet_b5(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=1.6, depth=2.2, scale=456/224, dropout=0.4, se_scale=4)
-def efficientnet_b6(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=1.8, depth=2.6, scale=528/224, dropout=0.5, se_scale=4)
-def efficientnet_b7(num_classes=100):
-    return EfficientNet(num_classes=num_classes, width=2.0, depth=3.1, scale=600/224, dropout=0.5, se_scale=4)
+def efficientnet_b0(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=1.0, depth=1.0, scale=224/224, dropout=0.2, se_scale=4, diff_drop=diff_drop)
+def efficientnet_b1(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=1.0, depth=1.1, scale=240/224, dropout=0.2, se_scale=4, diff_drop=diff_drop)
+def efficientnet_b2(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=1.1, depth=1.2, scale=260/224, dropout=0.3, se_scale=4, diff_drop=diff_drop)
+def efficientnet_b3(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=1.2, depth=1.4, scale=230/224, dropout=0.3, se_scale=4, diff_drop=diff_drop)
+def efficientnet_b4(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=1.4, depth=1.8, scale=380/224, dropout=0.4, se_scale=4, diff_drop=diff_drop)
+def efficientnet_b5(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=1.6, depth=2.2, scale=456/224, dropout=0.4, se_scale=4, diff_drop=diff_drop)
+def efficientnet_b6(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=1.8, depth=2.6, scale=528/224, dropout=0.5, se_scale=4, diff_drop=diff_drop)
+def efficientnet_b7(num_classes=100, diff_drop=True):
+    return EfficientNet(num_classes=num_classes, width=2.0, depth=3.1, scale=600/224, dropout=0.5, se_scale=4, diff_drop=diff_drop)
