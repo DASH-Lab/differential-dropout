@@ -41,7 +41,7 @@ class Transition(nn.Module):
         return self.layer(x)
         
 class DenseNet(nn.Module):
-    def __init__(self, block, num_blocks, growth_rate=12, reduction=0.5, num_classes=10, init_weights=True, diff_drop=0):
+    def __init__(self, block, num_blocks, growth_rate=12, reduction=0.5, num_classes=10, init_weights=True, diff_drop=True):
         super(DenseNet, self).__init__()
         self.growth_rate = growth_rate
         self.diff_drop = diff_drop
@@ -72,14 +72,8 @@ class DenseNet(nn.Module):
         
         self.batch_norm = nn.BatchNorm2d(num_channels)
         self.differential_dropout = None
-        if self.diff_drop == 1:
-            self.diff_drop = True
+        if self.diff_drop:
             self.differential_dropout = solver.DifferentialDropout()
-        elif self.diff_drop == 2:
-            self.diff_drop = True
-            self.differential_dropout = solver.DifferentialDropout_v2()
-        else:
-            self.diff_drop = False
         self.linear = nn.Linear(num_channels, num_classes)
         
         if init_weights:
@@ -121,13 +115,13 @@ class DenseNet(nn.Module):
                 nn.init.constant_(m.bias, 0)
 
 
-def DenseNet121(num_classes=1000, diff_drop=0):
+def DenseNet121(num_classes=1000, diff_drop=True):
     return DenseNet(BottleNeck, [6, 12, 24, 16], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
-def DenseNet161(num_classes=1000, diff_drop=0):
+def DenseNet161(num_classes=1000, diff_drop=True):
     return DenseNet(BottleNeck, [6, 12, 36, 24], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
-def DenseNet169(num_classes=1000, diff_drop=0):
+def DenseNet169(num_classes=1000, diff_drop=True):
     return DenseNet(BottleNeck, [6, 12, 32, 32], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
-def DenseNet201(num_classes=1000, diff_drop=0):
+def DenseNet201(num_classes=1000, diff_drop=True):
     return DenseNet(BottleNeck, [6, 12, 48, 32], growth_rate=32, num_classes=num_classes, diff_drop=diff_drop)
     
     

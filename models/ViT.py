@@ -97,7 +97,7 @@ class TransformerEncoder(nn.Sequential):
         super(TransformerEncoder, self).__init__(*[TransformerEncoderBlock(**kwargs) for _ in range(depth)])
 
 class ClassificationHead(nn.Module):
-    def __init__(self, embedding_size=768, num_classes=100, diff_drop=0):
+    def __init__(self, embedding_size=768, num_classes=100, diff_drop=True):
         super(ClassificationHead, self).__init__()
         
         self.diff_drop = diff_drop
@@ -107,14 +107,8 @@ class ClassificationHead(nn.Module):
             nn.LayerNorm(embedding_size),
         )
         self.differential_dropout = None
-        if self.diff_drop == 1:
-            self.diff_drop = True
+        if self.diff_drop:
             self.differential_dropout = solver.DifferentialDropout()
-        elif self.diff_drop == 2:
-            self.diff_drop = True
-            self.differential_dropout = solver.DifferentialDropout_v2()
-        else:
-            self.diff_drop = False
         self.fc = nn.Linear(embedding_size, num_classes)
     
     def forward(self, x):
@@ -126,7 +120,7 @@ class ClassificationHead(nn.Module):
         return x
 
 class ViT(nn.Sequential):
-    def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, diff_drop=0,**kwargs):
+    def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, diff_drop=True,**kwargs):
         super(ViT, self).__init__(
             PatchEmbedding(in_channels=in_channels, patch_size=patch_size, embedding_size=embedding_size, img_size=img_size),
             TransformerEncoder(depth=depth, embedding_size=embedding_size, **kwargs),

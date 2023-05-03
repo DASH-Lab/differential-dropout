@@ -59,7 +59,7 @@ class DifferentialDropout_v2(nn.Module):
                 total_mse += torch.mean(torch.square(temp[i] - temp_mean))
             
             _, unique_overall = torch.unique(torch.round(temp), return_counts=True)
-            unique_overall /= torch.sum(unique_overall)
+            unique_overall = unique_overall.float() / torch.sum(unique_overall).float()
             batch_entropy = torch.sum(unique_overall * (0.0 - torch.log2(unique_overall)))
             for i in range(length):
                 factor1 = torch.mean(torch.abs(corr_coef[i]))
@@ -67,7 +67,7 @@ class DifferentialDropout_v2(nn.Module):
                 factor2 = torch.mean(torch.square(temp[i] - temp_mean)) / total_mse
             
                 _, unique_local = torch.unique(torch.round(temp[i]), return_counts=True)
-                unique_local /= torch.sum(unique_local)
+                unique_local = unique_local.float() / torch.sum(unique_local).float()
                 local_entropy = torch.sum(unique_local * (0.0 - torch.log2(unique_local)))
                 factor3 = local_entropy / batch_entropy
 
@@ -75,8 +75,8 @@ class DifferentialDropout_v2(nn.Module):
                     factor3 = 1.0 / factor3
                 p = (1.0 - factor1) * factor2 * factor3
 
-                mask[i] = (torch.rand(x[i].shape) > p).float()
-            x = mask.to(x.device) * x / (1.0 - p)
+                mask[i] = (torch.rand(x[i].shape).to(x.device) > p).float()
+            x = mask * x / (1.0 - p)
         return x
 
 def PseudoPruning(module, input):
@@ -124,7 +124,7 @@ def PseudoPruning_v2(module, input):
         total_mse += torch.mean(torch.square(temp[i] - temp_mean))
     
     _, unique_overall = torch.unique(torch.round(temp), return_counts=True)
-    unique_overall /= torch.sum(unique_overall)
+    unique_overall = unique_overall.float() / torch.sum(unique_overall).float()
     batch_entropy = torch.sum(unique_overall * (0.0 - torch.log2(unique_overall)))
     p = 0.0
     for i in range(length):
@@ -133,7 +133,7 @@ def PseudoPruning_v2(module, input):
         factor2 = torch.mean(torch.square(temp[i] - temp_mean)) / total_mse
         
         _, unique_local = torch.unique(torch.round(temp[i]), return_counts=True)
-        unique_local /= torch.sum(unique_local)
+        unique_local = unique_local.float() / torch.sum(unique_local).float()
         local_entropy = torch.sum(unique_local * (0.0 - torch.log2(unique_local)))
         factor3 = local_entropy / batch_entropy
 
