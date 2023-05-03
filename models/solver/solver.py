@@ -42,7 +42,7 @@ class DifferentialDropout_v2(nn.Module):
     def __init__(self, inplace=False):
         super(DifferentialDropout_v2, self).__init__()
 
-    def forward(self, x, module):
+    def forward(self, x):
         if self.training:
             length = x.size(dim=0)
             mask = torch.zeros_like(x)
