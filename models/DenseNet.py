@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
-import solver.solver_v1 as solver
+import solver.solver as solver
 
 class BottleNeck(nn.Module):
     def __init__(self, in_channels, growth_rate):
@@ -94,11 +94,9 @@ class DenseNet(nn.Module):
         x = self.dense_module3(x)
         x = self.trans_module3(x)
         x = self.dense_module4(x)
-        if self.diff_drop:
-            x = self.differential_dropout(x=F.relu(self.batch_norm(x)), module=self.linear)
-            x = F.avg_pool2d(x, 4)
-        else:
-            x = F.avg_pool2d(F.relu(self.batch_norm(x)), 4)
+        x = F.avg_pool2d(F.relu(self.batch_norm(x)), 4)
+        if self.diff_drop and self.training:
+            x = self.differential_dropout(x)
         x = x.view(x.size(0), -1)
         x = self.linear(x)
         

@@ -6,7 +6,7 @@ Reference to EfficientNet Implementation:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import solver.solver_v1 as solver
+import solver.solver as solver
 
 class Swish(nn.Module):
     def __init__(self) -> None:
@@ -171,13 +171,11 @@ class EfficientNet(nn.Module):
     def forward(self, x):
         x = self.upsample(x)
         x = self.stages(x)
-        
-        if self.diff_drop:
-            x = self.differential_dropout(x=x, module=self.linear)
-        else:
-            x = self.dropout(x)
-        
         x = self.squeeze(x)
+        if self.diff_drop and self.training:
+            x = self.differential_dropout(x)
+        elif self.training:
+            x = self.dropout(x)
         x = x.view(x.size(0), -1)
         x = self.linear(x)
         return x

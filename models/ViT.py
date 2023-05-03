@@ -9,7 +9,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from einops import rearrange, reduce, repeat
 from einops.layers.torch import Rearrange, Reduce
-import solver.solver_v1 as solver
+import solver.solver as solver
 
 class PatchEmbedding(nn.Module):
     def __init__(self, in_channels: int = 3, patch_size: int = 16, embedding_size: int = 768, img_size = 224) -> None:
@@ -112,8 +112,8 @@ class ClassificationHead(nn.Module):
     
     def forward(self, x):
         x = self.reduce_norm(x)
-        if self.diff_drop:
-            x = self.differential_dropout(x=x, module=self.fc)
+        if self.diff_drop and self.training:
+            x = self.differential_dropout(x)
         x = self.fc(x)
         
         return x

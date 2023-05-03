@@ -5,7 +5,7 @@ Reference to ResNet Implementation:
 '''
 import torch
 import torch.nn as nn
-from solver.solver_v1 import DifferentialDropout
+import solver.solver as solver
 
 class BasicBlock(nn.Module):
     expansion = 1
@@ -115,9 +115,9 @@ class ResNet(nn.Module):
         x = self.conv3(x)
         x = self.conv4(x)
         x = self.conv5(x)
-        if self.diff_drop:
-            x = self.differential_dropout(x=x, module=self.fc)
         x = self.avg_pool(x)
+        if self.diff_drop and self.training:
+            x = self.differential_dropout(x)
         x = torch.flatten(x, 1)
         x = self.fc(x)
         

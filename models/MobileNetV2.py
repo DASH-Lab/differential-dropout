@@ -6,7 +6,7 @@ Reference to MobileNetV2 implementation:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import solver.solver_v1 as solver
+import solver.solver as solver
 
 def _make_divisible(v, divisor, min_value=None):
     if min_value is None:
@@ -99,11 +99,12 @@ class MobileNetV2(nn.Module):
         x = self.conv_first(x)
         x = self.features(x)
         x = self.conv_last(x)
-        if self.diff_drop:
-            x = self.differential_dropout(x=x, module=self.fc)
         x = self.avgpool(x)
+        if self.diff_drop and self.training:
+            x = self.differential_dropout(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
+        
         return x
     
     def _init_weights(self) -> None:
