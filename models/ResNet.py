@@ -65,7 +65,7 @@ class BottleNeck(nn.Module):
         return x
     
 class ResNet(nn.Module):
-    def __init__(self, block, num_blocks, num_classes=1000, init_weights=True, diff_drop=True) -> None:
+    def __init__(self, block, num_blocks, num_classes=1000, init_weights=True, diff_drop=0) -> None:
         super(ResNet, self).__init__()
         self.in_channels = 64
         self.conv1 = nn.Sequential(
@@ -80,8 +80,16 @@ class ResNet(nn.Module):
         self.conv3 = self.make_layer(block, 128, num_blocks[1], 2)
         self.conv4 = self.make_layer(block, 256, num_blocks[2], 1)
         self.conv5 = self.make_layer(block, 512, num_blocks[3], 2)
-        if self.diff_drop:
+        
+        self.differential_dropout = None
+        if self.diff_drop == 1:
+            self.diff_drop = True
             self.differential_dropout = solver.DifferentialDropout()
+        elif self.diff_drop == 2:
+            self.diff_drop = True
+            self.differential_dropout = solver.DifferentialDropout_v2()
+        else:
+            self.diff_drop = False
         self.avg_pool = nn.AdaptiveAvgPool2d(output_size=(1, 1))
         self.fc = nn.Linear(512 * block.expansion, num_classes)
         
@@ -124,13 +132,13 @@ class ResNet(nn.Module):
         return x
 
 
-def resnet18(num_classes=1000, diff_drop=True):
+def resnet18(num_classes=1000, diff_drop=0):
     return ResNet(BasicBlock, [2, 2, 2, 2], num_classes=num_classes, diff_drop=diff_drop)
-def resnet34(num_classes=1000, diff_drop=True):
+def resnet34(num_classes=1000, diff_drop=0):
     return ResNet(BasicBlock, [3, 4, 6, 3], num_classes=num_classes, diff_drop=diff_drop)
-def resnet50(num_classes=1000, diff_drop=True):
+def resnet50(num_classes=1000, diff_drop=0):
     return ResNet(BottleNeck, [3, 4, 6, 3], num_classes=num_classes, diff_drop=diff_drop)
-def resnet101(num_classes=1000, diff_drop=True):
+def resnet101(num_classes=1000, diff_drop=0):
     return ResNet(BottleNeck, [3, 4, 23, 3], num_classes=num_classes, diff_drop=diff_drop)
-def resnet152(num_classes=1000, diff_drop=True):
+def resnet152(num_classes=1000, diff_drop=0):
     return ResNet(BottleNeck, [3, 8, 36, 3], num_classes=num_classes, diff_drop=diff_drop)

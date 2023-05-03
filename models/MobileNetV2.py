@@ -51,7 +51,7 @@ class Block(nn.Module):
         return self.layers(x)
     
 class MobileNetV2(nn.Module):
-    def __init__(self, num_classes=100, input_size=224, width_multiplier=1.0, init_weight=True, diff_drop=True):
+    def __init__(self, num_classes=100, input_size=224, width_multiplier=1.0, init_weight=True, diff_drop=0):
         super(MobileNetV2, self).__init__()
         
         self.cfg = [
@@ -87,8 +87,15 @@ class MobileNetV2(nn.Module):
             nn.ReLU6(inplace=True),
         )
         
-        if self.diff_drop:
+        self.differential_dropout = None
+        if self.diff_drop == 1:
+            self.diff_drop = True
             self.differential_dropout = solver.DifferentialDropout()
+        elif self.diff_drop == 2:
+            self.diff_drop = True
+            self.differential_dropout = solver.DifferentialDropout_v2()
+        else:
+            self.diff_drop = False
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(output_channels, num_classes)
         
