@@ -40,7 +40,7 @@ class DifferentialDropout(nn.Module):
 
 class DifferentialDropout_v2(nn.Module):
     def __init__(self, inplace=False):
-        super(DifferentialDropout, self).__init__()
+        super(DifferentialDropout_v2, self).__init__()
 
     def forward(self, x, module):
         if self.training:
