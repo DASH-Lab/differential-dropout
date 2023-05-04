@@ -91,7 +91,7 @@ class SepConv(nn.Module):
         
     def forward(self, x):
         temp = x
-        residue = self.residual(x)
+        residue = self.residue(x)
         x = residue * self.se(residue)
         x = self.project(x)
         
@@ -145,7 +145,7 @@ class EfficientNet(nn.Module):
             self.differential_dropout = solver.DifferentialDropout()
         else:
             self.dropout = nn.Dropout(p=dropout)
-        self.linear = nn.Linear(channels[8], num_classes)
+        self.fc = nn.Linear(channels[8], num_classes)
         
         if init_weight:
             self._init_weights()
@@ -179,7 +179,7 @@ class EfficientNet(nn.Module):
         elif self.training:
             x = self.dropout(x)
         x = x.view(x.size(0), -1)
-        x = self.linear(x)
+        x = self.fc(x)
         return x
     
 def efficientnet_b0(num_classes=100, diff_drop=True):

@@ -77,7 +77,7 @@ class DenseNet(nn.Module):
         self.linear = nn.Linear(num_channels, num_classes)
         
         if init_weights:
-            self._init_weights()
+            self.init_weights()
     
     def _make_dense_layers(self, block, in_channels, num_block):
         layers = []

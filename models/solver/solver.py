@@ -30,17 +30,50 @@ class DifferentialDropout(nn.Module):
                 
                 factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
                 
-                candidate = (1 - factor1) * factor2 * factor3
+                candidate = ((1 - factor1) + factor2 + factor3) / 3
 
                 if candidate > p:
                     p = candidate
-            
+
             x = F.dropout(x, p=p.item(), training=True)
         return x
 
 class DifferentialDropout_v2(nn.Module):
     def __init__(self, inplace=False):
         super(DifferentialDropout_v2, self).__init__()
+    
+    def forward(self, x):
+        if self.training:
+            length = x.size(dim=0)
+            mask = torch.zeros_like(x)
+            temp = torch.reshape(x, (length, -1))
+            
+            corr_coef = torch.corrcoef(temp)
+            temp_mean = torch.zeros_like(temp[0])
+            for i in range(length):
+                temp_mean += temp[i]
+            temp_mean /= length
+            total_mse = 0.0
+            for i in range(length):
+                total_mse += torch.mean(torch.square(temp[i] - temp_mean))
+            
+            total_unique = torch.numel(torch.unique(torch.round(temp)))
+            for i in range(length):
+                factor1 = torch.mean(torch.abs(corr_coef[i]))
+                
+                factor2 = torch.mean(torch.square(temp[i] - temp_mean)) / total_mse
+                
+                factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
+                
+                p = ((1 - factor1) + factor2 + factor3) / 3
+                
+                mask[i] = (torch.rand(x[i].shape).to(x.device) > p).float()
+            x = mask * x / (1.0 - p)
+        return x
+
+class DifferentialDropout_v3(nn.Module):
+    def __init__(self, inplace=False):
+        super(DifferentialDropout_v3, self).__init__()
 
     def forward(self, x):
         if self.training:
@@ -73,9 +106,10 @@ class DifferentialDropout_v2(nn.Module):
 
                 if factor3 > 1.0:
                     factor3 = 1.0 / factor3
-                p = (1.0 - factor1) * factor2 * factor3
+                p = ((1.0 - factor1) + factor2 + factor3) / 3
 
                 mask[i] = (torch.rand(x[i].shape).to(x.device) > p).float()
+                
             x = mask * x / (1.0 - p)
         return x
 
@@ -101,7 +135,7 @@ def PseudoPruning(module, input):
         
         factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
         
-        candidate = ((1 - factor1) * factor2 * factor3)
+        candidate = ((1 - factor1) + factor2 + factor3) / 3
 
         if candidate > p:
             p = candidate
@@ -109,8 +143,39 @@ def PseudoPruning(module, input):
     for param in module.parameters():
         mask = (torch.rand(param.grad.shape).to(param.grad.device) > p).float()
         param.grad = param.grad.mul(mask)
-        
+
 def PseudoPruning_v2(module, input):
+    length = input.size(dim=0)
+    temp = torch.reshape(input, (length, -1))
+    
+    corr_coef = torch.corrcoef(temp)
+    temp_mean = torch.zeros_like(temp[0])
+    for i in range(length):
+        temp_mean += temp[i]
+    temp_mean /= length
+    total_mse = 0.0
+    for i in range(length):
+        total_mse += torch.mean(torch.square(temp[i] - temp_mean))
+    
+    total_unique = torch.numel(torch.unique(torch.round(temp)))
+    p = 0.0
+    for i in range(length):
+        factor1 = torch.mean(torch.abs(corr_coef[i]))
+        
+        factor2 = torch.mean(torch.square(temp[i] - temp_mean)) / total_mse
+        
+        factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
+        
+        candidate = ((1 - factor1) + factor2 + factor3) / 3
+
+        if candidate > p:
+            p = candidate
+
+    for param in module.parameters():
+        mask = (torch.rand(param.grad.shape).to(param.grad.device) > p).float()
+        param.grad = param.grad.mul(mask)
+
+def PseudoPruning_v3(module, input):
     length = input.size(dim=0)
     temp = torch.reshape(input, (length, -1))
     
@@ -140,7 +205,7 @@ def PseudoPruning_v2(module, input):
         if factor3 > 1.0:
             factor3 = 1.0 / factor3
         
-        candidate = ((1 - factor1) * factor2 * factor3)
+        candidate = ((1 - factor1) + factor2 + factor3) / 3
 
         if candidate > p:
             p = candidate

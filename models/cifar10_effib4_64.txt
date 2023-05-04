@@ -1,0 +1,1080 @@
+Training: Epoch 1 ------------------
+Batch     0: Loss per batch is 2.298989 and Accuracy is 0.125000
+Batch    50: Loss per batch is 1.995058 and Accuracy is 0.203125
+Batch   100: Loss per batch is 1.829868 and Accuracy is 0.218750
+Batch   150: Loss per batch is 1.633253 and Accuracy is 0.375000
+Batch   200: Loss per batch is 1.646527 and Accuracy is 0.359375
+Batch   250: Loss per batch is 1.426678 and Accuracy is 0.515625
+Batch   300: Loss per batch is 1.461171 and Accuracy is 0.453125
+Batch   350: Loss per batch is 1.364122 and Accuracy is 0.515625
+Batch   400: Loss per batch is 1.425073 and Accuracy is 0.531250
+Batch   450: Loss per batch is 1.608949 and Accuracy is 0.484375
+Batch   500: Loss per batch is 1.345868 and Accuracy is 0.484375
+Batch   550: Loss per batch is 1.228055 and Accuracy is 0.578125
+Batch   600: Loss per batch is 1.265019 and Accuracy is 0.515625
+Batch   650: Loss per batch is 1.024666 and Accuracy is 0.640625
+Batch   700: Loss per batch is 1.359681 and Accuracy is 0.468750
+Batch   750: Loss per batch is 0.958052 and Accuracy is 0.703125
+For Iteration: Loss is 1.451818 and Accuracy is 0.466940
+----Test: Epoch 1 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.70      0.49      0.57      1000
+  automobile       0.54      0.91      0.68      1000
+        bird       0.57      0.39      0.46      1000
+         cat       0.36      0.41      0.38      1000
+        deer       0.60      0.31      0.41      1000
+         dog       0.40      0.58      0.48      1000
+        frog       0.61      0.71      0.66      1000
+       horse       0.61      0.59      0.60      1000
+        ship       0.71      0.68      0.70      1000
+       truck       0.76      0.56      0.64      1000
+
+    accuracy                           0.56     10000
+   macro avg       0.59      0.56      0.56     10000
+weighted avg       0.59      0.56      0.56     10000
+
+Training: Epoch 2 ------------------
+Batch     0: Loss per batch is 0.990765 and Accuracy is 0.687500
+Batch    50: Loss per batch is 1.035275 and Accuracy is 0.656250
+Batch   100: Loss per batch is 1.110691 and Accuracy is 0.609375
+Batch   150: Loss per batch is 1.087199 and Accuracy is 0.609375
+Batch   200: Loss per batch is 0.977734 and Accuracy is 0.671875
+Batch   250: Loss per batch is 0.950269 and Accuracy is 0.640625
+Batch   300: Loss per batch is 0.990578 and Accuracy is 0.609375
+Batch   350: Loss per batch is 0.734146 and Accuracy is 0.734375
+Batch   400: Loss per batch is 0.727556 and Accuracy is 0.671875
+Batch   450: Loss per batch is 1.110646 and Accuracy is 0.640625
+Batch   500: Loss per batch is 0.830631 and Accuracy is 0.703125
+Batch   550: Loss per batch is 0.977532 and Accuracy is 0.625000
+Batch   600: Loss per batch is 0.846177 and Accuracy is 0.750000
+Batch   650: Loss per batch is 0.763107 and Accuracy is 0.734375
+Batch   700: Loss per batch is 0.903979 and Accuracy is 0.656250
+Batch   750: Loss per batch is 0.688274 and Accuracy is 0.734375
+For Iteration: Loss is 0.956602 and Accuracy is 0.661120
+----Test: Epoch 2 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.56      0.76      0.65      1000
+  automobile       0.72      0.85      0.78      1000
+        bird       0.42      0.69      0.52      1000
+         cat       0.57      0.28      0.38      1000
+        deer       0.77      0.30      0.43      1000
+         dog       0.70      0.39      0.50      1000
+        frog       0.64      0.80      0.71      1000
+       horse       0.79      0.64      0.71      1000
+        ship       0.65      0.84      0.73      1000
+       truck       0.73      0.74      0.74      1000
+
+    accuracy                           0.63     10000
+   macro avg       0.65      0.63      0.61     10000
+weighted avg       0.65      0.63      0.61     10000
+
+Training: Epoch 3 ------------------
+Batch     0: Loss per batch is 0.906448 and Accuracy is 0.687500
+Batch    50: Loss per batch is 0.579788 and Accuracy is 0.828125
+Batch   100: Loss per batch is 0.823778 and Accuracy is 0.703125
+Batch   150: Loss per batch is 0.726436 and Accuracy is 0.750000
+Batch   200: Loss per batch is 0.759252 and Accuracy is 0.718750
+Batch   250: Loss per batch is 0.758377 and Accuracy is 0.718750
+Batch   300: Loss per batch is 0.642573 and Accuracy is 0.750000
+Batch   350: Loss per batch is 0.836372 and Accuracy is 0.703125
+Batch   400: Loss per batch is 0.780363 and Accuracy is 0.656250
+Batch   450: Loss per batch is 0.821018 and Accuracy is 0.640625
+Batch   500: Loss per batch is 0.694615 and Accuracy is 0.765625
+Batch   550: Loss per batch is 0.628681 and Accuracy is 0.796875
+Batch   600: Loss per batch is 0.784769 and Accuracy is 0.765625
+Batch   650: Loss per batch is 0.632870 and Accuracy is 0.796875
+Batch   700: Loss per batch is 0.877733 and Accuracy is 0.750000
+Batch   750: Loss per batch is 0.714384 and Accuracy is 0.781250
+For Iteration: Loss is 0.717865 and Accuracy is 0.748480
+----Test: Epoch 3 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.83      0.55      0.66      1000
+  automobile       0.92      0.61      0.73      1000
+        bird       0.60      0.67      0.63      1000
+         cat       0.50      0.59      0.54      1000
+        deer       0.57      0.73      0.64      1000
+         dog       0.81      0.34      0.48      1000
+        frog       0.83      0.71      0.76      1000
+       horse       0.74      0.77      0.75      1000
+        ship       0.74      0.89      0.81      1000
+       truck       0.60      0.93      0.73      1000
+
+    accuracy                           0.68     10000
+   macro avg       0.71      0.68      0.67     10000
+weighted avg       0.71      0.68      0.67     10000
+
+Training: Epoch 4 ------------------
+Batch     0: Loss per batch is 0.713943 and Accuracy is 0.781250
+Batch    50: Loss per batch is 0.471875 and Accuracy is 0.796875
+Batch   100: Loss per batch is 0.386208 and Accuracy is 0.890625
+Batch   150: Loss per batch is 0.737986 and Accuracy is 0.796875
+Batch   200: Loss per batch is 0.465641 and Accuracy is 0.765625
+Batch   250: Loss per batch is 0.447387 and Accuracy is 0.843750
+Batch   300: Loss per batch is 0.494038 and Accuracy is 0.812500
+Batch   350: Loss per batch is 0.395417 and Accuracy is 0.875000
+Batch   400: Loss per batch is 0.476221 and Accuracy is 0.828125
+Batch   450: Loss per batch is 0.548672 and Accuracy is 0.796875
+Batch   500: Loss per batch is 0.570897 and Accuracy is 0.765625
+Batch   550: Loss per batch is 0.685414 and Accuracy is 0.750000
+Batch   600: Loss per batch is 0.628864 and Accuracy is 0.796875
+Batch   650: Loss per batch is 0.663590 and Accuracy is 0.796875
+Batch   700: Loss per batch is 0.506265 and Accuracy is 0.828125
+Batch   750: Loss per batch is 0.455580 and Accuracy is 0.812500
+For Iteration: Loss is 0.550853 and Accuracy is 0.808500
+----Test: Epoch 4 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.66      0.83      0.73      1000
+  automobile       0.89      0.85      0.87      1000
+        bird       0.44      0.82      0.57      1000
+         cat       0.57      0.49      0.53      1000
+        deer       0.73      0.64      0.68      1000
+         dog       0.67      0.54      0.60      1000
+        frog       0.87      0.69      0.77      1000
+       horse       0.88      0.68      0.77      1000
+        ship       0.91      0.75      0.82      1000
+       truck       0.84      0.81      0.83      1000
+
+    accuracy                           0.71     10000
+   macro avg       0.75      0.71      0.72     10000
+weighted avg       0.75      0.71      0.72     10000
+
+Training: Epoch 5 ------------------
+Batch     0: Loss per batch is 0.456106 and Accuracy is 0.828125
+Batch    50: Loss per batch is 0.295742 and Accuracy is 0.906250
+Batch   100: Loss per batch is 0.281911 and Accuracy is 0.890625
+Batch   150: Loss per batch is 0.452974 and Accuracy is 0.859375
+Batch   200: Loss per batch is 0.580703 and Accuracy is 0.781250
+Batch   250: Loss per batch is 0.302329 and Accuracy is 0.906250
+Batch   300: Loss per batch is 0.477927 and Accuracy is 0.843750
+Batch   350: Loss per batch is 0.329554 and Accuracy is 0.859375
+Batch   400: Loss per batch is 0.512166 and Accuracy is 0.765625
+Batch   450: Loss per batch is 0.558876 and Accuracy is 0.765625
+Batch   500: Loss per batch is 0.448829 and Accuracy is 0.859375
+Batch   550: Loss per batch is 0.444984 and Accuracy is 0.843750
+Batch   600: Loss per batch is 0.245492 and Accuracy is 0.921875
+Batch   650: Loss per batch is 0.376005 and Accuracy is 0.859375
+Batch   700: Loss per batch is 0.424512 and Accuracy is 0.843750
+Batch   750: Loss per batch is 0.330408 and Accuracy is 0.875000
+For Iteration: Loss is 0.411135 and Accuracy is 0.857540
+----Test: Epoch 5 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.70      0.77      0.74      1000
+  automobile       0.81      0.81      0.81      1000
+        bird       0.87      0.35      0.50      1000
+         cat       0.53      0.43      0.47      1000
+        deer       0.59      0.67      0.63      1000
+         dog       0.56      0.69      0.62      1000
+        frog       0.85      0.65      0.74      1000
+       horse       0.62      0.87      0.73      1000
+        ship       0.96      0.57      0.71      1000
+       truck       0.59      0.92      0.72      1000
+
+    accuracy                           0.67     10000
+   macro avg       0.71      0.67      0.67     10000
+weighted avg       0.71      0.67      0.67     10000
+
+Training: Epoch 6 ------------------
+Batch     0: Loss per batch is 0.204522 and Accuracy is 0.937500
+Batch    50: Loss per batch is 0.164831 and Accuracy is 0.953125
+Batch   100: Loss per batch is 0.147722 and Accuracy is 0.953125
+Batch   150: Loss per batch is 0.222241 and Accuracy is 0.921875
+Batch   200: Loss per batch is 0.389428 and Accuracy is 0.875000
+Batch   250: Loss per batch is 0.254533 and Accuracy is 0.890625
+Batch   300: Loss per batch is 0.201286 and Accuracy is 0.937500
+Batch   350: Loss per batch is 0.362632 and Accuracy is 0.828125
+Batch   400: Loss per batch is 0.306423 and Accuracy is 0.906250
+Batch   450: Loss per batch is 0.380837 and Accuracy is 0.859375
+Batch   500: Loss per batch is 0.378516 and Accuracy is 0.859375
+Batch   550: Loss per batch is 0.334462 and Accuracy is 0.859375
+Batch   600: Loss per batch is 0.293778 and Accuracy is 0.890625
+Batch   650: Loss per batch is 0.316452 and Accuracy is 0.859375
+Batch   700: Loss per batch is 0.372193 and Accuracy is 0.890625
+Batch   750: Loss per batch is 0.598804 and Accuracy is 0.781250
+For Iteration: Loss is 0.291496 and Accuracy is 0.900000
+----Test: Epoch 6 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.69      0.79      0.74      1000
+  automobile       0.90      0.80      0.85      1000
+        bird       0.57      0.75      0.64      1000
+         cat       0.73      0.29      0.42      1000
+        deer       0.68      0.69      0.69      1000
+         dog       0.61      0.68      0.65      1000
+        frog       0.82      0.79      0.81      1000
+       horse       0.76      0.79      0.77      1000
+        ship       0.90      0.74      0.81      1000
+       truck       0.71      0.91      0.79      1000
+
+    accuracy                           0.72     10000
+   macro avg       0.74      0.72      0.72     10000
+weighted avg       0.74      0.72      0.72     10000
+
+Training: Epoch 7 ------------------
+Batch     0: Loss per batch is 0.190777 and Accuracy is 0.937500
+Batch    50: Loss per batch is 0.297670 and Accuracy is 0.875000
+Batch   100: Loss per batch is 0.129763 and Accuracy is 0.953125
+Batch   150: Loss per batch is 0.210661 and Accuracy is 0.890625
+Batch   200: Loss per batch is 0.153081 and Accuracy is 0.953125
+Batch   250: Loss per batch is 0.201203 and Accuracy is 0.937500
+Batch   300: Loss per batch is 0.236474 and Accuracy is 0.906250
+Batch   350: Loss per batch is 0.210994 and Accuracy is 0.921875
+Batch   400: Loss per batch is 0.357926 and Accuracy is 0.859375
+Batch   450: Loss per batch is 0.265790 and Accuracy is 0.906250
+Batch   500: Loss per batch is 0.224347 and Accuracy is 0.906250
+Batch   550: Loss per batch is 0.222220 and Accuracy is 0.953125
+Batch   600: Loss per batch is 0.195206 and Accuracy is 0.937500
+Batch   650: Loss per batch is 0.298561 and Accuracy is 0.906250
+Batch   700: Loss per batch is 0.302137 and Accuracy is 0.921875
+Batch   750: Loss per batch is 0.371083 and Accuracy is 0.843750
+For Iteration: Loss is 0.210009 and Accuracy is 0.926660
+----Test: Epoch 7 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.69      0.74      0.72      1000
+  automobile       0.58      0.96      0.72      1000
+        bird       0.74      0.55      0.63      1000
+         cat       0.64      0.29      0.40      1000
+        deer       0.82      0.52      0.63      1000
+         dog       0.64      0.60      0.62      1000
+        frog       0.72      0.80      0.76      1000
+       horse       0.75      0.74      0.75      1000
+        ship       0.79      0.86      0.83      1000
+       truck       0.60      0.80      0.69      1000
+
+    accuracy                           0.69     10000
+   macro avg       0.70      0.69      0.67     10000
+weighted avg       0.70      0.69      0.67     10000
+
+Training: Epoch 8 ------------------
+Batch     0: Loss per batch is 0.081115 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.087688 and Accuracy is 0.968750
+Batch   100: Loss per batch is 0.114293 and Accuracy is 0.968750
+Batch   150: Loss per batch is 0.058379 and Accuracy is 0.984375
+Batch   200: Loss per batch is 0.133786 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.151447 and Accuracy is 0.937500
+Batch   300: Loss per batch is 0.094596 and Accuracy is 0.953125
+Batch   350: Loss per batch is 0.138988 and Accuracy is 0.937500
+Batch   400: Loss per batch is 0.205389 and Accuracy is 0.937500
+Batch   450: Loss per batch is 0.184139 and Accuracy is 0.921875
+Batch   500: Loss per batch is 0.182344 and Accuracy is 0.937500
+Batch   550: Loss per batch is 0.183787 and Accuracy is 0.906250
+Batch   600: Loss per batch is 0.050318 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.159567 and Accuracy is 0.937500
+Batch   700: Loss per batch is 0.166704 and Accuracy is 0.937500
+Batch   750: Loss per batch is 0.180344 and Accuracy is 0.968750
+For Iteration: Loss is 0.150372 and Accuracy is 0.948940
+----Test: Epoch 8 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.86      0.62      0.72      1000
+  automobile       0.75      0.90      0.82      1000
+        bird       0.56      0.72      0.63      1000
+         cat       0.56      0.47      0.51      1000
+        deer       0.70      0.72      0.71      1000
+         dog       0.54      0.65      0.59      1000
+        frog       0.62      0.90      0.73      1000
+       horse       0.90      0.62      0.74      1000
+        ship       0.93      0.75      0.83      1000
+       truck       0.90      0.70      0.79      1000
+
+    accuracy                           0.71     10000
+   macro avg       0.73      0.71      0.71     10000
+weighted avg       0.73      0.71      0.71     10000
+
+Training: Epoch 9 ------------------
+Batch     0: Loss per batch is 0.149397 and Accuracy is 0.937500
+Batch    50: Loss per batch is 0.009114 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.135421 and Accuracy is 0.968750
+Batch   150: Loss per batch is 0.177628 and Accuracy is 0.953125
+Batch   200: Loss per batch is 0.134282 and Accuracy is 0.968750
+Batch   250: Loss per batch is 0.133175 and Accuracy is 0.968750
+Batch   300: Loss per batch is 0.072173 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.065602 and Accuracy is 0.968750
+Batch   400: Loss per batch is 0.086603 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.114563 and Accuracy is 0.968750
+Batch   500: Loss per batch is 0.031012 and Accuracy is 1.000000
+Batch   550: Loss per batch is 0.106111 and Accuracy is 0.953125
+Batch   600: Loss per batch is 0.137509 and Accuracy is 0.953125
+Batch   650: Loss per batch is 0.074504 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.101965 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.090282 and Accuracy is 0.937500
+For Iteration: Loss is 0.118936 and Accuracy is 0.958920
+----Test: Epoch 9 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.82      0.71      0.76      1000
+  automobile       0.80      0.76      0.78      1000
+        bird       0.64      0.70      0.67      1000
+         cat       0.58      0.47      0.52      1000
+        deer       0.78      0.59      0.67      1000
+         dog       0.59      0.65      0.62      1000
+        frog       0.90      0.62      0.73      1000
+       horse       0.74      0.76      0.75      1000
+        ship       0.93      0.74      0.82      1000
+       truck       0.51      0.96      0.67      1000
+
+    accuracy                           0.70     10000
+   macro avg       0.73      0.70      0.70     10000
+weighted avg       0.73      0.70      0.70     10000
+
+Training: Epoch 10 ------------------
+Batch     0: Loss per batch is 0.047998 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.033449 and Accuracy is 0.984375
+Batch   100: Loss per batch is 0.245684 and Accuracy is 0.875000
+Batch   150: Loss per batch is 0.023627 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.058954 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.092610 and Accuracy is 0.984375
+Batch   300: Loss per batch is 0.114256 and Accuracy is 0.953125
+Batch   350: Loss per batch is 0.128691 and Accuracy is 0.953125
+Batch   400: Loss per batch is 0.146458 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.038222 and Accuracy is 0.984375
+Batch   500: Loss per batch is 0.143505 and Accuracy is 0.937500
+Batch   550: Loss per batch is 0.180574 and Accuracy is 0.968750
+Batch   600: Loss per batch is 0.061581 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.130573 and Accuracy is 0.984375
+Batch   700: Loss per batch is 0.129322 and Accuracy is 0.953125
+Batch   750: Loss per batch is 0.083848 and Accuracy is 0.984375
+For Iteration: Loss is 0.102237 and Accuracy is 0.963560
+----Test: Epoch 10 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.59      0.83      0.69      1000
+  automobile       0.96      0.62      0.75      1000
+        bird       0.46      0.83      0.59      1000
+         cat       0.53      0.53      0.53      1000
+        deer       0.68      0.69      0.68      1000
+         dog       0.65      0.54      0.59      1000
+        frog       0.91      0.65      0.76      1000
+       horse       0.87      0.65      0.74      1000
+        ship       0.81      0.87      0.84      1000
+       truck       0.88      0.67      0.76      1000
+
+    accuracy                           0.69     10000
+   macro avg       0.73      0.69      0.69     10000
+weighted avg       0.73      0.69      0.69     10000
+
+Training: Epoch 11 ------------------
+Batch     0: Loss per batch is 0.015108 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.041492 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.110222 and Accuracy is 0.953125
+Batch   150: Loss per batch is 0.045657 and Accuracy is 0.984375
+Batch   200: Loss per batch is 0.118080 and Accuracy is 0.968750
+Batch   250: Loss per batch is 0.028223 and Accuracy is 0.984375
+Batch   300: Loss per batch is 0.062150 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.033924 and Accuracy is 0.984375
+Batch   400: Loss per batch is 0.050734 and Accuracy is 1.000000
+Batch   450: Loss per batch is 0.105714 and Accuracy is 0.984375
+Batch   500: Loss per batch is 0.100256 and Accuracy is 0.968750
+Batch   550: Loss per batch is 0.106912 and Accuracy is 0.953125
+Batch   600: Loss per batch is 0.050556 and Accuracy is 1.000000
+Batch   650: Loss per batch is 0.060845 and Accuracy is 0.984375
+Batch   700: Loss per batch is 0.100069 and Accuracy is 0.953125
+Batch   750: Loss per batch is 0.250520 and Accuracy is 0.921875
+For Iteration: Loss is 0.089128 and Accuracy is 0.968800
+----Test: Epoch 11 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.77      0.69      0.73      1000
+  automobile       0.96      0.66      0.78      1000
+        bird       0.49      0.82      0.62      1000
+         cat       0.64      0.43      0.51      1000
+        deer       0.70      0.69      0.69      1000
+         dog       0.70      0.55      0.61      1000
+        frog       0.71      0.88      0.78      1000
+       horse       0.82      0.75      0.78      1000
+        ship       0.91      0.82      0.86      1000
+       truck       0.71      0.89      0.79      1000
+
+    accuracy                           0.72     10000
+   macro avg       0.74      0.72      0.72     10000
+weighted avg       0.74      0.72      0.72     10000
+
+Training: Epoch 12 ------------------
+Batch     0: Loss per batch is 0.117544 and Accuracy is 0.953125
+Batch    50: Loss per batch is 0.096450 and Accuracy is 0.953125
+Batch   100: Loss per batch is 0.108513 and Accuracy is 0.953125
+Batch   150: Loss per batch is 0.061471 and Accuracy is 0.968750
+Batch   200: Loss per batch is 0.033536 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.050998 and Accuracy is 0.968750
+Batch   300: Loss per batch is 0.118287 and Accuracy is 0.953125
+Batch   350: Loss per batch is 0.063564 and Accuracy is 0.984375
+Batch   400: Loss per batch is 0.030798 and Accuracy is 1.000000
+Batch   450: Loss per batch is 0.050426 and Accuracy is 0.968750
+Batch   500: Loss per batch is 0.139067 and Accuracy is 0.953125
+Batch   550: Loss per batch is 0.186477 and Accuracy is 0.937500
+Batch   600: Loss per batch is 0.053884 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.090853 and Accuracy is 0.953125
+Batch   700: Loss per batch is 0.074457 and Accuracy is 0.968750
+Batch   750: Loss per batch is 0.062026 and Accuracy is 0.968750
+For Iteration: Loss is 0.083225 and Accuracy is 0.970660
+----Test: Epoch 12 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.79      0.76      0.78      1000
+  automobile       0.87      0.84      0.85      1000
+        bird       0.59      0.72      0.65      1000
+         cat       0.63      0.40      0.49      1000
+        deer       0.69      0.71      0.70      1000
+         dog       0.56      0.73      0.63      1000
+        frog       0.81      0.79      0.80      1000
+       horse       0.70      0.83      0.76      1000
+        ship       0.84      0.86      0.85      1000
+       truck       0.96      0.67      0.79      1000
+
+    accuracy                           0.73     10000
+   macro avg       0.74      0.73      0.73     10000
+weighted avg       0.74      0.73      0.73     10000
+
+Training: Epoch 13 ------------------
+Batch     0: Loss per batch is 0.080627 and Accuracy is 0.953125
+Batch    50: Loss per batch is 0.054308 and Accuracy is 0.984375
+Batch   100: Loss per batch is 0.008827 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.022285 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.018267 and Accuracy is 1.000000
+Batch   250: Loss per batch is 0.044655 and Accuracy is 0.984375
+Batch   300: Loss per batch is 0.058193 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.066434 and Accuracy is 0.968750
+Batch   400: Loss per batch is 0.169948 and Accuracy is 0.937500
+Batch   450: Loss per batch is 0.030052 and Accuracy is 0.984375
+Batch   500: Loss per batch is 0.030590 and Accuracy is 1.000000
+Batch   550: Loss per batch is 0.091999 and Accuracy is 0.953125
+Batch   600: Loss per batch is 0.111953 and Accuracy is 0.953125
+Batch   650: Loss per batch is 0.173934 and Accuracy is 0.937500
+Batch   700: Loss per batch is 0.036277 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.098691 and Accuracy is 0.953125
+For Iteration: Loss is 0.074565 and Accuracy is 0.974220
+----Test: Epoch 13 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.77      0.70      0.73      1000
+  automobile       0.92      0.77      0.84      1000
+        bird       0.87      0.48      0.62      1000
+         cat       0.46      0.66      0.54      1000
+        deer       0.77      0.68      0.72      1000
+         dog       0.65      0.65      0.65      1000
+        frog       0.84      0.75      0.79      1000
+       horse       0.76      0.81      0.79      1000
+        ship       0.63      0.95      0.76      1000
+       truck       0.85      0.79      0.82      1000
+
+    accuracy                           0.72     10000
+   macro avg       0.75      0.72      0.73     10000
+weighted avg       0.75      0.72      0.73     10000
+
+Training: Epoch 14 ------------------
+Batch     0: Loss per batch is 0.068401 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.151728 and Accuracy is 0.953125
+Batch   100: Loss per batch is 0.055980 and Accuracy is 0.984375
+Batch   150: Loss per batch is 0.038973 and Accuracy is 0.984375
+Batch   200: Loss per batch is 0.044027 and Accuracy is 0.968750
+Batch   250: Loss per batch is 0.056903 and Accuracy is 0.968750
+Batch   300: Loss per batch is 0.034671 and Accuracy is 1.000000
+Batch   350: Loss per batch is 0.027308 and Accuracy is 0.984375
+Batch   400: Loss per batch is 0.055773 and Accuracy is 0.953125
+Batch   450: Loss per batch is 0.215768 and Accuracy is 0.890625
+Batch   500: Loss per batch is 0.146408 and Accuracy is 0.937500
+Batch   550: Loss per batch is 0.207731 and Accuracy is 0.937500
+Batch   600: Loss per batch is 0.063613 and Accuracy is 0.968750
+Batch   650: Loss per batch is 0.310013 and Accuracy is 0.906250
+Batch   700: Loss per batch is 0.145714 and Accuracy is 0.953125
+Batch   750: Loss per batch is 0.044787 and Accuracy is 0.984375
+For Iteration: Loss is 0.073352 and Accuracy is 0.974680
+----Test: Epoch 14 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.79      0.77      0.78      1000
+  automobile       0.88      0.85      0.87      1000
+        bird       0.74      0.59      0.65      1000
+         cat       0.64      0.38      0.48      1000
+        deer       0.60      0.78      0.68      1000
+         dog       0.63      0.63      0.63      1000
+        frog       0.58      0.93      0.72      1000
+       horse       0.79      0.76      0.78      1000
+        ship       0.91      0.79      0.85      1000
+       truck       0.85      0.81      0.83      1000
+
+    accuracy                           0.73     10000
+   macro avg       0.74      0.73      0.73     10000
+weighted avg       0.74      0.73      0.73     10000
+
+Training: Epoch 15 ------------------
+Batch     0: Loss per batch is 0.033047 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.104239 and Accuracy is 0.937500
+Batch   100: Loss per batch is 0.012009 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.070479 and Accuracy is 0.953125
+Batch   200: Loss per batch is 0.024363 and Accuracy is 1.000000
+Batch   250: Loss per batch is 0.151788 and Accuracy is 0.968750
+Batch   300: Loss per batch is 0.040625 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.019545 and Accuracy is 1.000000
+Batch   400: Loss per batch is 0.063683 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.036550 and Accuracy is 0.984375
+Batch   500: Loss per batch is 0.051653 and Accuracy is 0.968750
+Batch   550: Loss per batch is 0.041851 and Accuracy is 0.984375
+Batch   600: Loss per batch is 0.034516 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.058449 and Accuracy is 0.984375
+Batch   700: Loss per batch is 0.039760 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.009526 and Accuracy is 1.000000
+For Iteration: Loss is 0.063038 and Accuracy is 0.977940
+----Test: Epoch 15 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.67      0.86      0.75      1000
+  automobile       0.88      0.83      0.86      1000
+        bird       0.71      0.61      0.66      1000
+         cat       0.59      0.50      0.54      1000
+        deer       0.77      0.64      0.70      1000
+         dog       0.77      0.50      0.60      1000
+        frog       0.70      0.90      0.79      1000
+       horse       0.78      0.79      0.79      1000
+        ship       0.80      0.89      0.84      1000
+       truck       0.74      0.89      0.81      1000
+
+    accuracy                           0.74     10000
+   macro avg       0.74      0.74      0.73     10000
+weighted avg       0.74      0.74      0.73     10000
+
+Training: Epoch 16 ------------------
+Batch     0: Loss per batch is 0.031235 and Accuracy is 0.968750
+Batch    50: Loss per batch is 0.037363 and Accuracy is 0.968750
+Batch   100: Loss per batch is 0.018924 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.045073 and Accuracy is 0.984375
+Batch   200: Loss per batch is 0.085995 and Accuracy is 0.968750
+Batch   250: Loss per batch is 0.102115 and Accuracy is 0.968750
+Batch   300: Loss per batch is 0.110413 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.087091 and Accuracy is 0.953125
+Batch   400: Loss per batch is 0.054763 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.025768 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.014811 and Accuracy is 1.000000
+Batch   550: Loss per batch is 0.070800 and Accuracy is 0.968750
+Batch   600: Loss per batch is 0.141032 and Accuracy is 0.937500
+Batch   650: Loss per batch is 0.046485 and Accuracy is 0.968750
+Batch   700: Loss per batch is 0.014492 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.077120 and Accuracy is 0.968750
+For Iteration: Loss is 0.060867 and Accuracy is 0.979420
+----Test: Epoch 16 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.68      0.84      0.75      1000
+  automobile       0.93      0.79      0.85      1000
+        bird       0.67      0.64      0.66      1000
+         cat       0.64      0.42      0.51      1000
+        deer       0.78      0.63      0.70      1000
+         dog       0.53      0.76      0.62      1000
+        frog       0.72      0.87      0.79      1000
+       horse       0.71      0.84      0.77      1000
+        ship       0.89      0.81      0.85      1000
+       truck       0.92      0.69      0.79      1000
+
+    accuracy                           0.73     10000
+   macro avg       0.75      0.73      0.73     10000
+weighted avg       0.75      0.73      0.73     10000
+
+Training: Epoch 17 ------------------
+Batch     0: Loss per batch is 0.029465 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.031855 and Accuracy is 0.984375
+Batch   100: Loss per batch is 0.048802 and Accuracy is 0.984375
+Batch   150: Loss per batch is 0.048803 and Accuracy is 0.968750
+Batch   200: Loss per batch is 0.204315 and Accuracy is 0.953125
+Batch   250: Loss per batch is 0.010053 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.051570 and Accuracy is 0.984375
+Batch   350: Loss per batch is 0.010248 and Accuracy is 1.000000
+Batch   400: Loss per batch is 0.079944 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.017831 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.009024 and Accuracy is 1.000000
+Batch   550: Loss per batch is 0.070934 and Accuracy is 0.968750
+Batch   600: Loss per batch is 0.059884 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.044613 and Accuracy is 0.984375
+Batch   700: Loss per batch is 0.018151 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.177506 and Accuracy is 0.937500
+For Iteration: Loss is 0.060401 and Accuracy is 0.979040
+----Test: Epoch 17 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.81      0.75      0.78      1000
+  automobile       0.77      0.93      0.84      1000
+        bird       0.78      0.61      0.69      1000
+         cat       0.56      0.60      0.58      1000
+        deer       0.73      0.76      0.75      1000
+         dog       0.69      0.60      0.64      1000
+        frog       0.81      0.82      0.82      1000
+       horse       0.81      0.80      0.80      1000
+        ship       0.75      0.92      0.83      1000
+       truck       0.89      0.79      0.84      1000
+
+    accuracy                           0.76     10000
+   macro avg       0.76      0.76      0.76     10000
+weighted avg       0.76      0.76      0.76     10000
+
+Training: Epoch 18 ------------------
+Batch     0: Loss per batch is 0.033152 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.013606 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.010686 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.018311 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.018818 and Accuracy is 1.000000
+Batch   250: Loss per batch is 0.015600 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.003565 and Accuracy is 1.000000
+Batch   350: Loss per batch is 0.005114 and Accuracy is 1.000000
+Batch   400: Loss per batch is 0.090439 and Accuracy is 0.968750
+Batch   450: Loss per batch is 0.029729 and Accuracy is 0.984375
+Batch   500: Loss per batch is 0.071592 and Accuracy is 0.968750
+Batch   550: Loss per batch is 0.028632 and Accuracy is 1.000000
+Batch   600: Loss per batch is 0.137268 and Accuracy is 0.953125
+Batch   650: Loss per batch is 0.083720 and Accuracy is 0.968750
+Batch   700: Loss per batch is 0.034918 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.021547 and Accuracy is 1.000000
+For Iteration: Loss is 0.056405 and Accuracy is 0.980320
+----Test: Epoch 18 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.89      0.61      0.72      1000
+  automobile       0.74      0.93      0.82      1000
+        bird       0.77      0.57      0.66      1000
+         cat       0.50      0.58      0.54      1000
+        deer       0.71      0.69      0.70      1000
+         dog       0.60      0.68      0.64      1000
+        frog       0.91      0.66      0.76      1000
+       horse       0.72      0.82      0.77      1000
+        ship       0.79      0.88      0.83      1000
+       truck       0.77      0.84      0.81      1000
+
+    accuracy                           0.73     10000
+   macro avg       0.74      0.73      0.72     10000
+weighted avg       0.74      0.73      0.72     10000
+
+Training: Epoch 19 ------------------
+Batch     0: Loss per batch is 0.153683 and Accuracy is 0.953125
+Batch    50: Loss per batch is 0.009795 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.132834 and Accuracy is 0.953125
+Batch   150: Loss per batch is 0.047582 and Accuracy is 0.968750
+Batch   200: Loss per batch is 0.055240 and Accuracy is 0.968750
+Batch   250: Loss per batch is 0.041712 and Accuracy is 0.984375
+Batch   300: Loss per batch is 0.011550 and Accuracy is 1.000000
+Batch   350: Loss per batch is 0.010124 and Accuracy is 1.000000
+Batch   400: Loss per batch is 0.144051 and Accuracy is 0.953125
+Batch   450: Loss per batch is 0.053393 and Accuracy is 0.968750
+Batch   500: Loss per batch is 0.062486 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.057428 and Accuracy is 0.968750
+Batch   600: Loss per batch is 0.193309 and Accuracy is 0.953125
+Batch   650: Loss per batch is 0.028746 and Accuracy is 0.984375
+Batch   700: Loss per batch is 0.019410 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.087836 and Accuracy is 0.968750
+For Iteration: Loss is 0.058489 and Accuracy is 0.979880
+----Test: Epoch 19 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.65      0.85      0.74      1000
+  automobile       0.91      0.80      0.85      1000
+        bird       0.48      0.83      0.61      1000
+         cat       0.68      0.37      0.48      1000
+        deer       0.74      0.68      0.71      1000
+         dog       0.68      0.57      0.62      1000
+        frog       0.93      0.69      0.79      1000
+       horse       0.77      0.79      0.78      1000
+        ship       0.76      0.90      0.82      1000
+       truck       0.92      0.76      0.83      1000
+
+    accuracy                           0.72     10000
+   macro avg       0.75      0.72      0.72     10000
+weighted avg       0.75      0.72      0.72     10000
+
+Training: Epoch 20 ------------------
+Batch     0: Loss per batch is 0.065229 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.056069 and Accuracy is 0.984375
+Batch   100: Loss per batch is 0.176291 and Accuracy is 0.953125
+Batch   150: Loss per batch is 0.008757 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.037468 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.025119 and Accuracy is 0.984375
+Batch   300: Loss per batch is 0.035478 and Accuracy is 0.984375
+Batch   350: Loss per batch is 0.022449 and Accuracy is 0.984375
+Batch   400: Loss per batch is 0.039885 and Accuracy is 1.000000
+Batch   450: Loss per batch is 0.069500 and Accuracy is 0.984375
+Batch   500: Loss per batch is 0.036826 and Accuracy is 1.000000
+Batch   550: Loss per batch is 0.124907 and Accuracy is 0.937500
+Batch   600: Loss per batch is 0.032669 and Accuracy is 1.000000
+Batch   650: Loss per batch is 0.054432 and Accuracy is 0.984375
+Batch   700: Loss per batch is 0.031268 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.018766 and Accuracy is 1.000000
+For Iteration: Loss is 0.051731 and Accuracy is 0.981760
+----Test: Epoch 20 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.79      0.79      0.79      1000
+  automobile       0.91      0.80      0.85      1000
+        bird       0.74      0.68      0.71      1000
+         cat       0.51      0.68      0.58      1000
+        deer       0.68      0.77      0.72      1000
+         dog       0.74      0.56      0.64      1000
+        frog       0.87      0.75      0.80      1000
+       horse       0.74      0.84      0.79      1000
+        ship       0.91      0.82      0.86      1000
+       truck       0.78      0.88      0.83      1000
+
+    accuracy                           0.75     10000
+   macro avg       0.77      0.75      0.76     10000
+weighted avg       0.77      0.75      0.76     10000
+
+Training: Epoch 21 ------------------
+Batch     0: Loss per batch is 0.023071 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.015399 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.024445 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.019452 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.123482 and Accuracy is 0.968750
+Batch   250: Loss per batch is 0.019838 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.076027 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.154674 and Accuracy is 0.953125
+Batch   400: Loss per batch is 0.045601 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.070873 and Accuracy is 0.968750
+Batch   500: Loss per batch is 0.028178 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.008707 and Accuracy is 1.000000
+Batch   600: Loss per batch is 0.021757 and Accuracy is 1.000000
+Batch   650: Loss per batch is 0.098978 and Accuracy is 0.968750
+Batch   700: Loss per batch is 0.081907 and Accuracy is 0.968750
+Batch   750: Loss per batch is 0.068768 and Accuracy is 0.953125
+For Iteration: Loss is 0.047572 and Accuracy is 0.984020
+----Test: Epoch 21 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.57      0.85      0.68      1000
+  automobile       0.69      0.95      0.80      1000
+        bird       0.64      0.70      0.67      1000
+         cat       0.62      0.44      0.52      1000
+        deer       0.87      0.47      0.61      1000
+         dog       0.59      0.64      0.61      1000
+        frog       0.89      0.69      0.78      1000
+       horse       0.82      0.74      0.78      1000
+        ship       0.79      0.84      0.81      1000
+       truck       0.84      0.78      0.81      1000
+
+    accuracy                           0.71     10000
+   macro avg       0.73      0.71      0.71     10000
+weighted avg       0.73      0.71      0.71     10000
+
+Training: Epoch 22 ------------------
+Batch     0: Loss per batch is 0.018771 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.006556 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.071072 and Accuracy is 0.984375
+Batch   150: Loss per batch is 0.020223 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.025466 and Accuracy is 1.000000
+Batch   250: Loss per batch is 0.035291 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.039045 and Accuracy is 0.984375
+Batch   350: Loss per batch is 0.011202 and Accuracy is 1.000000
+Batch   400: Loss per batch is 0.029881 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.021956 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.038215 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.281601 and Accuracy is 0.906250
+Batch   600: Loss per batch is 0.019832 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.007302 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.031517 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.115334 and Accuracy is 0.906250
+For Iteration: Loss is 0.049509 and Accuracy is 0.983160
+----Test: Epoch 22 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.60      0.83      0.70      1000
+  automobile       0.70      0.94      0.80      1000
+        bird       0.64      0.66      0.65      1000
+         cat       0.63      0.54      0.58      1000
+        deer       0.83      0.53      0.65      1000
+         dog       0.74      0.47      0.57      1000
+        frog       0.87      0.72      0.79      1000
+       horse       0.73      0.81      0.77      1000
+        ship       0.68      0.92      0.78      1000
+       truck       0.87      0.70      0.77      1000
+
+    accuracy                           0.71     10000
+   macro avg       0.73      0.71      0.71     10000
+weighted avg       0.73      0.71      0.71     10000
+
+Training: Epoch 23 ------------------
+Batch     0: Loss per batch is 0.092828 and Accuracy is 0.968750
+Batch    50: Loss per batch is 0.031793 and Accuracy is 0.984375
+Batch   100: Loss per batch is 0.008927 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.111342 and Accuracy is 0.984375
+Batch   200: Loss per batch is 0.006761 and Accuracy is 1.000000
+Batch   250: Loss per batch is 0.047365 and Accuracy is 0.984375
+Batch   300: Loss per batch is 0.009469 and Accuracy is 1.000000
+Batch   350: Loss per batch is 0.054507 and Accuracy is 0.984375
+Batch   400: Loss per batch is 0.042389 and Accuracy is 0.968750
+Batch   450: Loss per batch is 0.025435 and Accuracy is 0.984375
+Batch   500: Loss per batch is 0.093402 and Accuracy is 0.953125
+Batch   550: Loss per batch is 0.004096 and Accuracy is 1.000000
+Batch   600: Loss per batch is 0.028374 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.025247 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.020249 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.140430 and Accuracy is 0.984375
+For Iteration: Loss is 0.050621 and Accuracy is 0.982500
+----Test: Epoch 23 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.70      0.81      0.75      1000
+  automobile       0.88      0.85      0.86      1000
+        bird       0.46      0.82      0.59      1000
+         cat       0.56      0.54      0.55      1000
+        deer       0.64      0.77      0.70      1000
+         dog       0.82      0.38      0.52      1000
+        frog       0.82      0.80      0.81      1000
+       horse       0.91      0.61      0.73      1000
+        ship       0.94      0.76      0.84      1000
+       truck       0.85      0.84      0.84      1000
+
+    accuracy                           0.72     10000
+   macro avg       0.76      0.72      0.72     10000
+weighted avg       0.76      0.72      0.72     10000
+
+Training: Epoch 24 ------------------
+Batch     0: Loss per batch is 0.089129 and Accuracy is 0.968750
+Batch    50: Loss per batch is 0.021054 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.037797 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.075734 and Accuracy is 0.968750
+Batch   200: Loss per batch is 0.017131 and Accuracy is 1.000000
+Batch   250: Loss per batch is 0.020312 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.009139 and Accuracy is 1.000000
+Batch   350: Loss per batch is 0.069064 and Accuracy is 0.968750
+Batch   400: Loss per batch is 0.004897 and Accuracy is 1.000000
+Batch   450: Loss per batch is 0.067886 and Accuracy is 0.968750
+Batch   500: Loss per batch is 0.024899 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.004309 and Accuracy is 1.000000
+Batch   600: Loss per batch is 0.110668 and Accuracy is 0.953125
+Batch   650: Loss per batch is 0.017440 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.030584 and Accuracy is 0.968750
+Batch   750: Loss per batch is 0.073172 and Accuracy is 0.968750
+For Iteration: Loss is 0.040321 and Accuracy is 0.986600
+----Test: Epoch 24 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.73      0.79      0.76      1000
+  automobile       0.88      0.83      0.85      1000
+        bird       0.61      0.75      0.67      1000
+         cat       0.59      0.51      0.54      1000
+        deer       0.72      0.72      0.72      1000
+         dog       0.53      0.69      0.60      1000
+        frog       0.76      0.83      0.79      1000
+       horse       0.90      0.65      0.75      1000
+        ship       0.81      0.91      0.86      1000
+       truck       0.95      0.60      0.73      1000
+
+    accuracy                           0.73     10000
+   macro avg       0.75      0.73      0.73     10000
+weighted avg       0.75      0.73      0.73     10000
+
+Training: Epoch 25 ------------------
+Batch     0: Loss per batch is 0.031009 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.026227 and Accuracy is 0.984375
+Batch   100: Loss per batch is 0.011170 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.008284 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.075570 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.058215 and Accuracy is 0.968750
+Batch   300: Loss per batch is 0.112354 and Accuracy is 0.984375
+Batch   350: Loss per batch is 0.030839 and Accuracy is 0.984375
+Batch   400: Loss per batch is 0.129553 and Accuracy is 0.968750
+Batch   450: Loss per batch is 0.014215 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.039434 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.002638 and Accuracy is 1.000000
+Batch   600: Loss per batch is 0.024343 and Accuracy is 1.000000
+Batch   650: Loss per batch is 0.017943 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.034928 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.039149 and Accuracy is 0.984375
+For Iteration: Loss is 0.046814 and Accuracy is 0.983580
+----Test: Epoch 25 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.71      0.87      0.78      1000
+  automobile       0.85      0.90      0.87      1000
+        bird       0.57      0.78      0.66      1000
+         cat       0.59      0.59      0.59      1000
+        deer       0.77      0.69      0.73      1000
+         dog       0.75      0.55      0.63      1000
+        frog       0.84      0.78      0.81      1000
+       horse       0.77      0.82      0.80      1000
+        ship       0.89      0.86      0.88      1000
+       truck       0.94      0.71      0.81      1000
+
+    accuracy                           0.75     10000
+   macro avg       0.77      0.75      0.75     10000
+weighted avg       0.77      0.75      0.75     10000
+
+Training: Epoch 26 ------------------
+Batch     0: Loss per batch is 0.020274 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.015886 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.009516 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.023291 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.026176 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.018707 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.104204 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.071161 and Accuracy is 0.968750
+Batch   400: Loss per batch is 0.035522 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.044907 and Accuracy is 0.968750
+Batch   500: Loss per batch is 0.080212 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.015965 and Accuracy is 1.000000
+Batch   600: Loss per batch is 0.057623 and Accuracy is 0.968750
+Batch   650: Loss per batch is 0.013960 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.014490 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.059560 and Accuracy is 0.984375
+For Iteration: Loss is 0.038612 and Accuracy is 0.986440
+----Test: Epoch 26 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.90      0.63      0.74      1000
+  automobile       0.80      0.86      0.83      1000
+        bird       0.84      0.56      0.67      1000
+         cat       0.47      0.71      0.57      1000
+        deer       0.76      0.66      0.70      1000
+         dog       0.60      0.65      0.62      1000
+        frog       0.84      0.82      0.83      1000
+       horse       0.81      0.78      0.80      1000
+        ship       0.92      0.73      0.82      1000
+       truck       0.67      0.92      0.77      1000
+
+    accuracy                           0.73     10000
+   macro avg       0.76      0.73      0.74     10000
+weighted avg       0.76      0.73      0.74     10000
+
+Training: Epoch 27 ------------------
+Batch     0: Loss per batch is 0.006794 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.189621 and Accuracy is 0.953125
+Batch   100: Loss per batch is 0.066589 and Accuracy is 0.968750
+Batch   150: Loss per batch is 0.003038 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.030723 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.002458 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.032235 and Accuracy is 0.984375
+Batch   350: Loss per batch is 0.013649 and Accuracy is 1.000000
+Batch   400: Loss per batch is 0.058654 and Accuracy is 0.968750
+Batch   450: Loss per batch is 0.014305 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.094539 and Accuracy is 0.968750
+Batch   550: Loss per batch is 0.088276 and Accuracy is 0.968750
+Batch   600: Loss per batch is 0.023121 and Accuracy is 1.000000
+Batch   650: Loss per batch is 0.045222 and Accuracy is 0.984375
+Batch   700: Loss per batch is 0.056897 and Accuracy is 0.984375
+Batch   750: Loss per batch is 0.047019 and Accuracy is 0.984375
+For Iteration: Loss is 0.044075 and Accuracy is 0.985060
+----Test: Epoch 27 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.77      0.81      0.79      1000
+  automobile       0.88      0.87      0.88      1000
+        bird       0.85      0.52      0.64      1000
+         cat       0.59      0.52      0.55      1000
+        deer       0.71      0.76      0.74      1000
+         dog       0.58      0.72      0.65      1000
+        frog       0.71      0.92      0.80      1000
+       horse       0.82      0.78      0.80      1000
+        ship       0.91      0.83      0.87      1000
+       truck       0.85      0.83      0.84      1000
+
+    accuracy                           0.76     10000
+   macro avg       0.77      0.76      0.76     10000
+weighted avg       0.77      0.76      0.76     10000
+
+Training: Epoch 28 ------------------
+Batch     0: Loss per batch is 0.021740 and Accuracy is 0.984375
+Batch    50: Loss per batch is 0.015892 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.030719 and Accuracy is 0.984375
+Batch   150: Loss per batch is 0.015241 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.046189 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.126234 and Accuracy is 0.968750
+Batch   300: Loss per batch is 0.066862 and Accuracy is 0.953125
+Batch   350: Loss per batch is 0.080275 and Accuracy is 0.968750
+Batch   400: Loss per batch is 0.017413 and Accuracy is 0.984375
+Batch   450: Loss per batch is 0.020492 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.037623 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.144301 and Accuracy is 0.921875
+Batch   600: Loss per batch is 0.037834 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.014612 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.004054 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.062444 and Accuracy is 0.968750
+For Iteration: Loss is 0.041606 and Accuracy is 0.985740
+----Test: Epoch 28 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.65      0.90      0.75      1000
+  automobile       0.91      0.82      0.86      1000
+        bird       0.60      0.73      0.66      1000
+         cat       0.67      0.49      0.57      1000
+        deer       0.69      0.76      0.72      1000
+         dog       0.78      0.44      0.56      1000
+        frog       0.81      0.83      0.82      1000
+       horse       0.72      0.84      0.78      1000
+        ship       0.91      0.81      0.86      1000
+       truck       0.84      0.84      0.84      1000
+
+    accuracy                           0.75     10000
+   macro avg       0.76      0.75      0.74     10000
+weighted avg       0.76      0.75      0.74     10000
+
+Training: Epoch 29 ------------------
+Batch     0: Loss per batch is 0.007292 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.014164 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.002906 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.000817 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.044600 and Accuracy is 0.984375
+Batch   250: Loss per batch is 0.006864 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.052073 and Accuracy is 0.984375
+Batch   350: Loss per batch is 0.097885 and Accuracy is 0.984375
+Batch   400: Loss per batch is 0.051794 and Accuracy is 0.968750
+Batch   450: Loss per batch is 0.021660 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.035269 and Accuracy is 1.000000
+Batch   550: Loss per batch is 0.083294 and Accuracy is 0.984375
+Batch   600: Loss per batch is 0.101347 and Accuracy is 0.968750
+Batch   650: Loss per batch is 0.051855 and Accuracy is 0.968750
+Batch   700: Loss per batch is 0.011342 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.047119 and Accuracy is 0.984375
+For Iteration: Loss is 0.037744 and Accuracy is 0.987360
+----Test: Epoch 29 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.86      0.70      0.77      1000
+  automobile       0.89      0.85      0.87      1000
+        bird       0.55      0.77      0.64      1000
+         cat       0.53      0.59      0.56      1000
+        deer       0.83      0.59      0.69      1000
+         dog       0.69      0.55      0.61      1000
+        frog       0.75      0.83      0.79      1000
+       horse       0.77      0.82      0.79      1000
+        ship       0.90      0.84      0.87      1000
+       truck       0.81      0.88      0.84      1000
+
+    accuracy                           0.74     10000
+   macro avg       0.76      0.74      0.74     10000
+weighted avg       0.76      0.74      0.74     10000
+
+Training: Epoch 30 ------------------
+Batch     0: Loss per batch is 0.016114 and Accuracy is 1.000000
+Batch    50: Loss per batch is 0.002483 and Accuracy is 1.000000
+Batch   100: Loss per batch is 0.009350 and Accuracy is 1.000000
+Batch   150: Loss per batch is 0.008510 and Accuracy is 1.000000
+Batch   200: Loss per batch is 0.010491 and Accuracy is 1.000000
+Batch   250: Loss per batch is 0.003661 and Accuracy is 1.000000
+Batch   300: Loss per batch is 0.103977 and Accuracy is 0.968750
+Batch   350: Loss per batch is 0.001618 and Accuracy is 1.000000
+Batch   400: Loss per batch is 0.002749 and Accuracy is 1.000000
+Batch   450: Loss per batch is 0.003677 and Accuracy is 1.000000
+Batch   500: Loss per batch is 0.060587 and Accuracy is 0.984375
+Batch   550: Loss per batch is 0.085210 and Accuracy is 0.968750
+Batch   600: Loss per batch is 0.025064 and Accuracy is 0.984375
+Batch   650: Loss per batch is 0.006619 and Accuracy is 1.000000
+Batch   700: Loss per batch is 0.014856 and Accuracy is 1.000000
+Batch   750: Loss per batch is 0.034200 and Accuracy is 1.000000
+For Iteration: Loss is 0.037022 and Accuracy is 0.987200
+----Test: Epoch 30 ------------------
+              precision    recall  f1-score   support
+
+    airplane       0.78      0.78      0.78      1000
+  automobile       0.87      0.91      0.89      1000
+        bird       0.80      0.58      0.67      1000
+         cat       0.55      0.55      0.55      1000
+        deer       0.60      0.80      0.69      1000
+         dog       0.64      0.67      0.65      1000
+        frog       0.89      0.69      0.78      1000
+       horse       0.66      0.89      0.76      1000
+        ship       0.91      0.85      0.88      1000
+       truck       0.94      0.75      0.84      1000
+
+    accuracy                           0.75     10000
+   macro avg       0.77      0.75      0.75     10000
+weighted avg       0.77      0.75      0.75     10000
+

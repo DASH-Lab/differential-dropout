@@ -83,7 +83,7 @@ class ResNet(nn.Module):
         
         self.differential_dropout = None
         if self.diff_drop:
-            self.differential_dropout = solver.DifferentialDropout()
+            self.differential_dropout = solver.DifferentialDropout_v2()
         self.avg_pool = nn.AdaptiveAvgPool2d(output_size=(1, 1))
         self.fc = nn.Linear(512 * block.expansion, num_classes)
         
