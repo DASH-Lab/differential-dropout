@@ -119,10 +119,16 @@ class ClassificationHead(nn.Module):
         
         return x
 
-class ViT(nn.Sequential):
+class ViT(nn.Module):
     def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, diff_drop=True,**kwargs):
-        super(ViT, self).__init__(
-            PatchEmbedding(in_channels=in_channels, patch_size=patch_size, embedding_size=embedding_size, img_size=img_size),
-            TransformerEncoder(depth=depth, embedding_size=embedding_size, **kwargs),
-            ClassificationHead(embedding_size=embedding_size, num_classes=num_classes, diff_drop=diff_drop),
-        )
+        super(ViT, self).__init__()
+        self.embedding = PatchEmbedding(in_channels=in_channels, patch_size=patch_size, embedding_size=embedding_size, img_size=img_size),
+        self.encoder = TransformerEncoder(depth=depth, embedding_size=embedding_size, **kwargs),
+        self.classification_head = ClassificationHead(embedding_size=embedding_size, num_classes=num_classes, diff_drop=diff_drop),
+        
+    def forward(self, x):
+        x = self.embedding(x)
+        x = self.encoder(x)
+        x = self.classification_head(x)
+        
+        return x
