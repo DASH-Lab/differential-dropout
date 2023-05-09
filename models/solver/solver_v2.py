@@ -10,6 +10,7 @@ class DifferentialDropout(nn.Module):
     def forward(self, x):
         if self.training:
             length = x.size(dim=0)
+            mask = torch.zeros_like(x)
             temp = torch.reshape(x, (length, -1))
             
             corr_coef = torch.corrcoef(temp)
@@ -22,7 +23,6 @@ class DifferentialDropout(nn.Module):
                 total_mse += torch.mean(torch.square(temp[i] - temp_mean))
             
             total_unique = torch.numel(torch.unique(torch.round(temp)))
-            p = 0.0
             for i in range(length):
                 factor1 = torch.mean(torch.abs(corr_coef[i]))
                 
@@ -30,14 +30,12 @@ class DifferentialDropout(nn.Module):
                 
                 factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
                 
-                candidate = ((1 - factor1) + factor2 + factor3) / 3
-
-                if candidate > p:
-                    p = candidate
-
-            x = F.dropout(x, p=p.item(), training=True)
+                p = ((1 - factor1) + factor2 + factor3) / 3
+                
+                mask[i] = (torch.rand(x[i].shape).to(x.device) > p).float()
+            x = mask * x / (1.0 - p)
         return x
-
+    
 def PseudoPruning(module, input):
     length = input.size(dim=0)
     temp = torch.reshape(input, (length, -1))
