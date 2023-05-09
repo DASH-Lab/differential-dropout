@@ -31,7 +31,7 @@ class DifferentialDropout(nn.Module):
                 factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
                 
                 p = ((1 - factor1) + factor2 + factor3) / 3
-                
+
                 mask[i] = (torch.rand(x[i].shape).to(x.device) > p).float()
             x = mask * x / (1.0 - p)
         return x
