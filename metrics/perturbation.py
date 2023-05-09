@@ -67,11 +67,14 @@ def label_resistance_loop(dataloader):
         for X, y in dataloader:
             perturbation_factor = 0.0
             x = random_zeroing(X, perturbation_factor)
+            initial_pred = None
             while(True):
                 pred = model(x.to(device))
                 pred = torch.argmax(pred, dim=1)
                 pred = pred.cpu().numpy()
-                if (pred[0] != y[0]):
+                if initial_pred is None:
+                    initial_pred = pred[0]
+                elif initial_pred != pred[0]:
                     perturbation.append(perturbation_factor)
                     break
                 else:

@@ -30,7 +30,8 @@ class DifferentialDropout(nn.Module):
                 
                 factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
                 
-                p = 1 - ((factor1 + (1 - factor2) + (1 - factor3)) / (3 * epoch))
+                factor4 = epoch + np.square(epoch * np.sin(epoch) * np.cos(epoch))
+                p = 1 - ((factor1 + (1 - factor2) + (1 - factor3)) / (3 * factor4))
 
                 mask[i] = (torch.rand(x[i].shape).to(x.device) > p).float()
             x = mask * x / (1.0 - p)
@@ -59,7 +60,9 @@ def PseudoPruning(module, input, epoch):
         
         factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
         
-        candidate = 1 - ((factor1 + (1 - factor2) + (1 - factor3)) / (3 * epoch))
+        factor4 = epoch + np.square(epoch * np.sin(epoch) * np.cos(epoch))
+        
+        candidate = 1 - ((factor1 + (1 - factor2) + (1 - factor3)) / (3 * factor4))
 
         if candidate > p:
             p = candidate
