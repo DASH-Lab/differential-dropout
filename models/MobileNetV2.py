@@ -7,6 +7,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import solver.solver as solver
+import solver.solver_v2 as solver_v2
+import solver.solver_v3 as solver_v3
 
 def _make_divisible(v, divisor, min_value=None):
     if min_value is None:
@@ -88,21 +90,28 @@ class MobileNetV2(nn.Module):
         )
         
         self.differential_dropout = None
-        if self.diff_drop:
+        if self.diff_drop == "v1":
             self.differential_dropout = solver.DifferentialDropout()
+        elif self.diff_drop == "v2":
+            self.differential_dropout = solver_v2.DifferentialDropout()
+        elif self.diff_drop == "v3":
+            self.differential_dropout = solver_v3.DifferentialDropout()
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(output_channels, num_classes)
         
         if init_weight:
             self._init_weights()
             
-    def forward(self, x):
+    def forward(self, x, epoch=None):
         x = self.conv_first(x)
         x = self.features(x)
         x = self.conv_last(x)
         x = self.avgpool(x)
-        if self.diff_drop and self.training:
-            x = self.differential_dropout(x)
+        if self.training:
+            if self.diff_drop == "v3":
+                x = self.differential_dropout(x, epoch)
+            elif self.diff_drop == "v1" or self.diff_drop == "v2":
+                x = self.differential_dropout(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
         

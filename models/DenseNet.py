@@ -8,6 +8,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 import solver.solver as solver
+import solver.solver_v2 as solver_v2
+import solver.solver_v3 as solver_v3
 
 class BottleNeck(nn.Module):
     def __init__(self, in_channels, growth_rate):
@@ -71,9 +73,15 @@ class DenseNet(nn.Module):
         num_channels += num_blocks[3] * growth_rate
         
         self.batch_norm = nn.BatchNorm2d(num_channels)
+        
         self.differential_dropout = None
-        if self.diff_drop:
+        if self.diff_drop == "v1":
             self.differential_dropout = solver.DifferentialDropout()
+        elif self.diff_drop == "v2":
+            self.differential_dropout = solver_v2.DifferentialDropout()
+        elif self.diff_drop == "v3":
+            self.differential_dropout = solver_v3.DifferentialDropout()
+            
         self.linear = nn.Linear(num_channels, num_classes)
         
         if init_weights:
@@ -86,7 +94,7 @@ class DenseNet(nn.Module):
             in_channels += self.growth_rate
         return nn.Sequential(*layers)
     
-    def forward(self, x):
+    def forward(self, x, epoch=None):
         x = self.conv1(x)
         x = self.dense_module1(x)
         x = self.trans_module1(x)
@@ -96,8 +104,11 @@ class DenseNet(nn.Module):
         x = self.trans_module3(x)
         x = self.dense_module4(x)
         x = F.avg_pool2d(F.relu(self.batch_norm(x)), 4)
-        if self.diff_drop and self.training:
-            x = self.differential_dropout(x)
+        if self.training:
+            if self.diff_drop == "v3":
+                x = self.differential_dropout(x, epoch)
+            elif self.diff_drop == "v1" or self.diff_drop == "v2":
+                x = self.differential_dropout(x)
         x = x.view(x.size(0), -1)
         x = self.linear(x)
         

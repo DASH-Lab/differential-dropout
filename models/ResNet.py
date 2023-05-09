@@ -6,6 +6,8 @@ Reference to ResNet Implementation:
 import torch
 import torch.nn as nn
 import solver.solver as solver
+import solver.solver_v2 as solver_v2
+import solver.solver_v3 as solver_v3
 
 class BasicBlock(nn.Module):
     expansion = 1
@@ -65,7 +67,7 @@ class BottleNeck(nn.Module):
         return x
     
 class ResNet(nn.Module):
-    def __init__(self, block, num_blocks, num_classes=1000, init_weights=True, diff_drop=True) -> None:
+    def __init__(self, block, num_blocks, diff_drop, num_classes=1000, init_weights=True, ) -> None:
         super(ResNet, self).__init__()
         self.in_channels = 64
         self.conv1 = nn.Sequential(
@@ -82,8 +84,13 @@ class ResNet(nn.Module):
         self.conv5 = self.make_layer(block, 512, num_blocks[3], 2)
         
         self.differential_dropout = None
-        if self.diff_drop:
-            self.differential_dropout = solver.DifferentialDropout_v2()
+        if self.diff_drop == "v1":
+            self.differential_dropout = solver.DifferentialDropout()
+        elif self.diff_drop == "v2":
+            self.differential_dropout = solver_v2.DifferentialDropout()
+        elif self.diff_drop == "v3":
+            self.differential_dropout = solver_v3.DifferentialDropout()
+            
         self.avg_pool = nn.AdaptiveAvgPool2d(output_size=(1, 1))
         self.fc = nn.Linear(512 * block.expansion, num_classes)
         
@@ -111,28 +118,31 @@ class ResNet(nn.Module):
                 nn.init.normal_(m.weight, 0, 0.01)
                 nn.init.constant_(m.bias, 0)
     
-    def forward(self, x):
+    def forward(self, x, epoch=None):
         x = self.conv1(x)
         x = self.conv2(x)
         x = self.conv3(x)
         x = self.conv4(x)
         x = self.conv5(x)
         x = self.avg_pool(x)
-        if self.diff_drop and self.training:
-            x = self.differential_dropout(x)
+        if self.training:
+            if self.diff_drop == "v3":
+                x = self.differential_dropout(x, epoch)
+            elif self.diff_drop == "v1" or self.diff_drop == "v2":
+                x = self.differential_dropout(x)
         x = torch.flatten(x, 1)
         x = self.fc(x)
         
         return x
 
 
-def resnet18(num_classes=1000, diff_drop=True):
+def resnet18(diff_drop, num_classes=1000):
     return ResNet(BasicBlock, [2, 2, 2, 2], num_classes=num_classes, diff_drop=diff_drop)
-def resnet34(num_classes=1000, diff_drop=True):
+def resnet34(diff_drop, num_classes=1000):
     return ResNet(BasicBlock, [3, 4, 6, 3], num_classes=num_classes, diff_drop=diff_drop)
-def resnet50(num_classes=1000, diff_drop=True):
+def resnet50(diff_drop, num_classes=1000):
     return ResNet(BottleNeck, [3, 4, 6, 3], num_classes=num_classes, diff_drop=diff_drop)
-def resnet101(num_classes=1000, diff_drop=True):
+def resnet101(diff_drop, num_classes=1000):
     return ResNet(BottleNeck, [3, 4, 23, 3], num_classes=num_classes, diff_drop=diff_drop)
-def resnet152(num_classes=1000, diff_drop=True):
+def resnet152(diff_drop, num_classes=1000):
     return ResNet(BottleNeck, [3, 8, 36, 3], num_classes=num_classes, diff_drop=diff_drop)

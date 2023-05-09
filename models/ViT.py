@@ -10,6 +10,8 @@ import torch.nn.functional as F
 from einops import rearrange, reduce, repeat
 from einops.layers.torch import Rearrange, Reduce
 import solver.solver as solver
+import solver.solver_v2 as solver_v2
+import solver.solver_v3 as solver_v3
 
 class PatchEmbedding(nn.Module):
     def __init__(self, in_channels: int = 3, patch_size: int = 16, embedding_size: int = 768, img_size = 224) -> None:
@@ -106,15 +108,24 @@ class ClassificationHead(nn.Module):
             Reduce('b n e -> b e', reduction='mean'),
             nn.LayerNorm(embedding_size),
         )
+        
         self.differential_dropout = None
-        if self.diff_drop:
+        if self.diff_drop == "v1":
             self.differential_dropout = solver.DifferentialDropout()
+        elif self.diff_drop == "v2":
+            self.differential_dropout = solver_v2.DifferentialDropout()
+        elif self.diff_drop == "v3":
+            self.differential_dropout = solver_v3.DifferentialDropout()
+        
         self.fc = nn.Linear(embedding_size, num_classes)
     
-    def forward(self, x):
+    def forward(self, x, epoch=None):
         x = self.reduce_norm(x)
-        if self.diff_drop and self.training:
-            x = self.differential_dropout(x)
+        if self.training:
+            if self.diff_drop == "v3":
+                x = self.differential_dropout(x, epoch)
+            elif self.diff_drop == "v1" or self.diff_drop == "v2":
+                x = self.differential_dropout(x)
         x = self.fc(x)
         
         return x

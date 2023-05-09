@@ -30,13 +30,13 @@ class DifferentialDropout(nn.Module):
                 
                 factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
                 
-                p = ((1 - factor1) + factor2 + factor3) / 3
+                p = 1 - ((factor1 + (1 - factor2) + (1 - factor3)) / (3 * epoch))
                 
                 mask[i] = (torch.rand(x[i].shape).to(x.device) > p).float()
             x = mask * x / (1.0 - p)
         return x
     
-def PseudoPruning(module, input):
+def PseudoPruning(module, input, epoch):
     length = input.size(dim=0)
     temp = torch.reshape(input, (length, -1))
     
@@ -49,24 +49,17 @@ def PseudoPruning(module, input):
     for i in range(length):
         total_mse += torch.mean(torch.square(temp[i] - temp_mean))
     
-    _, unique_overall = torch.unique(torch.round(temp), return_counts=True)
-    unique_overall = unique_overall.float() / torch.sum(unique_overall).float()
-    batch_entropy = torch.sum(unique_overall * (0.0 - torch.log2(unique_overall)))
+    total_unique = torch.numel(torch.unique(torch.round(temp)))
+    
     p = 0.0
     for i in range(length):
         factor1 = torch.mean(torch.abs(corr_coef[i]))
         
         factor2 = torch.mean(torch.square(temp[i] - temp_mean)) / total_mse
         
-        _, unique_local = torch.unique(torch.round(temp[i]), return_counts=True)
-        unique_local = unique_local.float() / torch.sum(unique_local).float()
-        local_entropy = torch.sum(unique_local * (0.0 - torch.log2(unique_local)))
-        factor3 = local_entropy / batch_entropy
-
-        if factor3 > 1.0:
-            factor3 = 1.0 / factor3
+        factor3 = torch.numel(torch.unique(torch.round(temp[i]))) / total_unique
         
-        candidate = ((1 - factor1) + factor2 + factor3) / 3
+        candidate = 1 - ((factor1 + (1 - factor2) + (1 - factor3)) / (3 * epoch))
 
         if candidate > p:
             p = candidate
