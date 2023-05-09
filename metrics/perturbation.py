@@ -53,7 +53,7 @@ def random_zeroing(X, factor):
     origin = X.numpy()
     for i in range(len(origin)):
         for j in range(len(origin[i])):
-            mask = np.random.choice([1.0, 0.0], origin[i][j].shape, replace=False, p=[1-factor, factor])
+            mask = np.random.choice([1.0, 0.0], origin[i][j].shape, p=[1-factor, factor])
             origin[i][j] = origin[i][j] * mask
     
     return torch.Tensor(origin)
@@ -66,17 +66,19 @@ def label_resistance_loop(dataloader):
     with torch.no_grad():
         for X, y in dataloader:
             perturbation_factor = 0.0
-            X = random_zeroing(X, perturbation_factor)
+            x = random_zeroing(X, perturbation_factor)
             while(True):
-                pred = model(X.to(device))
+                pred = model(x.to(device))
                 pred = torch.argmax(pred, dim=1)
                 pred = pred.cpu().numpy()
-                y = y.cpu().numpy()
                 if (pred[0] != y[0]):
                     perturbation.append(perturbation_factor)
                     break
                 else:
-                    perturbation_factor += 0.01
+                    perturbation_factor += 0.05
+                if perturbation_factor > 1.0:
+                    break
+                x = random_zeroing(X, perturbation_factor)
                     
     return np.array(perturbation)
 
@@ -89,3 +91,15 @@ print("#################################")
 print("#### member Label resistance ####")
 print("#################################")
 memeber = label_resistance_loop(member_loader)
+
+print(np.mean(non_memeber), np.var(non_memeber))
+
+uniques, count = np.unique(non_memeber, return_counts=True)
+count = count / np.sum(count)
+plt.plot(uniques, count)
+print(np.mean(memeber), np.var(memeber))
+
+uniques, count = np.unique(memeber, return_counts=True)
+count = count / np.sum(count)
+plt.plot(uniques, count)
+plt.show()
