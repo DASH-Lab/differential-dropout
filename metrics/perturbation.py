@@ -1,12 +1,11 @@
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from sklearn.metrics import classification_report
 import sys
 sys.path.append('../models')
 import ResNet as resnet
@@ -24,7 +23,6 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 ######### Configure Metric Setting ####### 
 ##########################################
 batch_size = 1
-model = ResNet.resnet50().to(device)
 weight_path = './weights/ResNet'
 model = torch.load(weight_path)
 criterion = nn.CrossEntropyLoss()
@@ -47,6 +45,9 @@ trans = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean, std),
 ])
+
+model.to(device)
+model.eval()
 
 nonmember_set = torchvision.datasets.ImageFolder(root=nonmember_path, transform=trans)
 nonmember_loader = DataLoader(nonmember_set, batch_size=batch_size, shuffle=True, drop_last=False,)

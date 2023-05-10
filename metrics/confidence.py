@@ -1,12 +1,11 @@
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from sklearn.metrics import classification_report
 import sys
 sys.path.append('../models')
 import ResNet as resnet
@@ -24,7 +23,6 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 ######### Configure Metric Setting ####### 
 ##########################################
 batch_size = 1
-model = ResNet.resnet50().to(device)
 weight_path = './weights/ResNet'
 model = torch.load(weight_path)
 criterion = nn.CrossEntropyLoss()
@@ -55,11 +53,17 @@ member_loader = DataLoader(member_set, batch_size=batch_size, shuffle=True, drop
 
 classes = nonmember_set.classes
 
+model.to(device)
+model.eval()
+
 def softmax_entropy(pred):
     score = pred
     score = np.exp(score) / np.sum(np.exp(score))
-    score = score * (0.0 - np.log2(score))
-    return np.sum(score)
+    sum = 0.0
+    for i in range(len(score)):
+        if score[i] != 0:
+            sum -= score[i] * np.log2(score[i])
+    return sum
 
 def confidence_measure_loop(dataloader):
     model.eval()

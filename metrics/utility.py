@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
@@ -24,7 +24,6 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 ######### Configure Metric Setting ####### 
 ##########################################
 batch_size = 256
-model = ResNet.resnet50().to(device)
 weight_path = './weights/ResNet'
 model = torch.load(weight_path)
 criterion = nn.CrossEntropyLoss()
@@ -46,6 +45,9 @@ trans = transforms.Compose([
     transforms.Normalize(mean, std),
     transforms.Resize((224, 224)),
 ])
+
+model.to(device)
+model.eval()
 
 testset = torchvision.datasets.ImageFolder(root=data_path, transform=trans)
 testloader = DataLoader(testset, batch_size=batch_size, shuffle=True, drop_last=False,)

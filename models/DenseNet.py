@@ -82,7 +82,7 @@ class DenseNet(nn.Module):
         elif self.diff_drop == "v3":
             self.differential_dropout = solver_v3.DifferentialDropout()
             
-        self.linear = nn.Linear(num_channels, num_classes)
+        self.fc = nn.Linear(num_channels, num_classes)
         
         if init_weights:
             self.init_weights()
@@ -110,7 +110,7 @@ class DenseNet(nn.Module):
             elif self.diff_drop == "v1" or self.diff_drop == "v2":
                 x = self.differential_dropout(x)
         x = x.view(x.size(0), -1)
-        x = self.linear(x)
+        x = self.fc(x)
         
         return x
     
