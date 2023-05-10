@@ -99,7 +99,7 @@ class TransformerEncoder(nn.Sequential):
         super(TransformerEncoder, self).__init__(*[TransformerEncoderBlock(**kwargs) for _ in range(depth)])
 
 class ClassificationHead(nn.Module):
-    def __init__(self, embedding_size=768, num_classes=100, diff_drop=True):
+    def __init__(self, embedding_size=768, num_classes=100, diff_drop="v0"):
         super(ClassificationHead, self).__init__()
         
         self.diff_drop = diff_drop
@@ -132,15 +132,15 @@ class ClassificationHead(nn.Module):
         return x, p
 
 class ViT(nn.Module):
-    def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, diff_drop=True,**kwargs):
+    def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, diff_drop="v0",**kwargs):
         super(ViT, self).__init__()
-        self.embedding = PatchEmbedding(in_channels=in_channels, patch_size=patch_size, embedding_size=embedding_size, img_size=img_size),
-        self.encoder = TransformerEncoder(depth=depth, embedding_size=embedding_size, **kwargs),
-        self.classification_head = ClassificationHead(embedding_size=embedding_size, num_classes=num_classes, diff_drop=diff_drop),
+        self.embedding = PatchEmbedding(in_channels=in_channels, patch_size=patch_size, embedding_size=embedding_size, img_size=img_size)
+        self.encoder = TransformerEncoder(depth=depth, embedding_size=embedding_size, **kwargs)
+        self.classification_head = ClassificationHead(embedding_size=embedding_size, num_classes=num_classes, diff_drop=diff_drop)
         
-    def forward(self, x):
+    def forward(self, x, epoch=None):
         x = self.embedding(x)
         x = self.encoder(x)
-        x, p = self.classification_head(x)
+        x, p = self.classification_head(x, epoch)
         
         return x, p
