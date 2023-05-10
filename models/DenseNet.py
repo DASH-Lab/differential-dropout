@@ -95,6 +95,7 @@ class DenseNet(nn.Module):
         return nn.Sequential(*layers)
     
     def forward(self, x, epoch=None):
+        p = 0.0
         x = self.conv1(x)
         x = self.dense_module1(x)
         x = self.trans_module1(x)
@@ -106,13 +107,13 @@ class DenseNet(nn.Module):
         x = F.avg_pool2d(F.relu(self.batch_norm(x)), 4)
         if self.training:
             if self.diff_drop == "v3":
-                x = self.differential_dropout(x, epoch)
+                x, p = self.differential_dropout(x, epoch)
             elif self.diff_drop == "v1" or self.diff_drop == "v2":
-                x = self.differential_dropout(x)
+                x, p = self.differential_dropout(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
         
-        return x
+        return x, p
     
     def init_weights(self):
         for m in self.modules():

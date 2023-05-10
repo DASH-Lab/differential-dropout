@@ -179,19 +179,20 @@ class EfficientNet(nn.Module):
         return nn.Sequential(*layers)
     
     def forward(self, x, epoch=None):
+        p = 0.0
         x = self.upsample(x)
         x = self.stages(x)
         x = self.squeeze(x)
         if self.training:
             if self.diff_drop == "v3":
-                x = self.differential_dropout(x, epoch)
+                x, p = self.differential_dropout(x, epoch)
             elif self.diff_drop == "v1" or self.diff_drop == "v2":
-                x = self.differential_dropout(x)
+                x, p = self.differential_dropout(x)
             else:
                 x = self.dropout(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
-        return x
+        return x, p
     
 def efficientnet_b0(num_classes=100, diff_drop=True):
     return EfficientNet(num_classes=num_classes, width=1.0, depth=1.0, scale=224/224, dropout=0.2, se_scale=4, diff_drop=diff_drop)

@@ -95,21 +95,21 @@ def label_resistance_loop(dataloader):
 print("#################################")
 print("## Non-member Label resistance ##")
 print("#################################")
-non_memeber = label_resistance_loop(nonmember_loader)
+non_member = label_resistance_loop(nonmember_loader)
 
 print("#################################")
 print("#### member Label resistance ####")
 print("#################################")
-memeber = label_resistance_loop(member_loader)
+member = label_resistance_loop(member_loader)
 
-print(np.mean(non_memeber), np.var(non_memeber))
+print(np.mean(non_member), np.var(non_member))
 
-uniques, count = np.unique(non_memeber, return_counts=True)
+uniques, count = np.unique(non_member, return_counts=True)
 count = count / np.sum(count)
 plt.plot(uniques, count)
-print(np.mean(memeber), np.var(memeber))
 
-uniques, count = np.unique(memeber, return_counts=True)
+print(np.mean(member), np.var(member))
+uniques, count = np.unique(member, return_counts=True)
 count = count / np.sum(count)
 plt.plot(uniques, count)
 plt.show()

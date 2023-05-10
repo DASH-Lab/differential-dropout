@@ -83,9 +83,21 @@ def confidence_measure_loop(dataloader):
 print("#################################")
 print("## Non-member Label resistance ##")
 print("#################################")
-non_memeber = confidence_measure_loop(nonmember_loader)
+non_member = confidence_measure_loop(nonmember_loader)
 
 print("#################################")
 print("#### member Label resistance ####")
 print("#################################")
-memeber = confidence_measure_loop(member_loader)
+member = confidence_measure_loop(member_loader)
+
+print(np.mean(non_member), np.var(non_member))
+uniques, count = np.unique(non_member, return_counts=True)
+count = count / np.sum(count)
+plt.hist(non_member, alpha=0.5, density=True)
+
+print(np.mean(member), np.var(member))
+uniques, count = np.unique(member, return_counts=True)
+count = count / np.sum(count)
+plt.hist(member, alpha=0.5, density=True)
+
+plt.show()

@@ -120,15 +120,16 @@ class ClassificationHead(nn.Module):
         self.fc = nn.Linear(embedding_size, num_classes)
     
     def forward(self, x, epoch=None):
+        p = 0.0
         x = self.reduce_norm(x)
         if self.training:
             if self.diff_drop == "v3":
-                x = self.differential_dropout(x, epoch)
+                x, p = self.differential_dropout(x, epoch)
             elif self.diff_drop == "v1" or self.diff_drop == "v2":
-                x = self.differential_dropout(x)
+                x, p = self.differential_dropout(x)
         x = self.fc(x)
         
-        return x
+        return x, p
 
 class ViT(nn.Module):
     def __init__(self, in_channels=3, patch_size=16, embedding_size=768, img_size=224, depth=12, num_classes=100, diff_drop=True,**kwargs):
@@ -140,6 +141,6 @@ class ViT(nn.Module):
     def forward(self, x):
         x = self.embedding(x)
         x = self.encoder(x)
-        x = self.classification_head(x)
+        x, p = self.classification_head(x)
         
-        return x
+        return x, p

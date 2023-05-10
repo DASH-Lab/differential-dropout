@@ -103,19 +103,20 @@ class MobileNetV2(nn.Module):
             self._init_weights()
             
     def forward(self, x, epoch=None):
+        p = 0.0
         x = self.conv_first(x)
         x = self.features(x)
         x = self.conv_last(x)
         x = self.avgpool(x)
         if self.training:
             if self.diff_drop == "v3":
-                x = self.differential_dropout(x, epoch)
+                x, p = self.differential_dropout(x, epoch)
             elif self.diff_drop == "v1" or self.diff_drop == "v2":
-                x = self.differential_dropout(x)
+                x, p = self.differential_dropout(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
         
-        return x
+        return x, p
     
     def _init_weights(self) -> None:
         for m in self.modules():

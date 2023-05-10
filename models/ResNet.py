@@ -119,6 +119,7 @@ class ResNet(nn.Module):
                 nn.init.constant_(m.bias, 0)
     
     def forward(self, x, epoch=None):
+        p = 0.0
         x = self.conv1(x)
         x = self.conv2(x)
         x = self.conv3(x)
@@ -127,13 +128,13 @@ class ResNet(nn.Module):
         x = self.avg_pool(x)
         if self.training:
             if self.diff_drop == "v3":
-                x = self.differential_dropout(x, epoch)
+                x, p = self.differential_dropout(x, epoch)
             elif self.diff_drop == "v1" or self.diff_drop == "v2":
-                x = self.differential_dropout(x)
+                x, p = self.differential_dropout(x)
         x = torch.flatten(x, 1)
         x = self.fc(x)
         
-        return x
+        return x, p
 
 
 def resnet18(diff_drop, num_classes=1000):
