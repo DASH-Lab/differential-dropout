@@ -7,7 +7,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from sklearn.metrics import classification_report
-from ..models import DenseNet, EfficientNet, MobileNetV2, ResNet, ViT
+import sys
+sys.path.append('../models')
+import ResNet as resnet
+import DenseNet as densenet
+import EfficientNet as efficientnet
+import MobileNetV2 as mobilenet
+import ViT as vit
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
