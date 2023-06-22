@@ -10,9 +10,7 @@ from sklearn.metrics import classification_report
 import sys
 sys.path.append('../models')
 import ResNet as resnet
-import DenseNet as densenet
 import EfficientNet as efficientnet
-import MobileNetV2 as mobilenet
 import ViT as vit
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
