@@ -1,4 +1,4 @@
-# Drop at the Last Moment: Information-Centric Dropout for Privacy-Preserving Neural Network
+# Drop at the Last Moment: Feature Information-Centric Dropout for Privacy-Preserving Neural Network
 성균관대학교 2023 2학기 학부 졸업 논문 프로젝트(2023 bachelor graduation thesis)  
 소속: 소프트웨어학과 (Computer Science and Engineering)  
 학번: 2018310737  
