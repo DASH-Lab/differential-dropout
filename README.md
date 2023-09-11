@@ -1,4 +1,4 @@
-# Drop at the Last Moment: Feature Information-Centric Dropout for Privacy-Preserving Neural Network
+# 이미지 프라이버시 보호를 위한 딥러닝 신경망 모델 드롭아웃과 프루닝에 관한 연구
 성균관대학교 2023 2학기 학부 졸업 논문 프로젝트(2023 bachelor graduation thesis)  
 소속: 소프트웨어학과 (Computer Science and Engineering)  
 학번: 2018310737  
